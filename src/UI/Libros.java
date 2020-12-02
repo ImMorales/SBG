@@ -27,7 +27,6 @@ public class Libros extends javax.swing.JFrame {
         mostrarTablaLibros();
         mostrarNumeroDeLibros();
         mostrarNumeroDeAutores();
-        crearPopMenuATabla();
         placeHolder();
         actualizarBusqueda();
         setExtendedState(MAXIMIZED_BOTH);
@@ -68,7 +67,6 @@ public class Libros extends javax.swing.JFrame {
         lblLibros = new javax.swing.JLabel();
         lblAutores = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        btnFiltro = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnRegitro = new javax.swing.JButton();
         lblVolver = new javax.swing.JLabel();
@@ -333,18 +331,6 @@ public class Libros extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(254, 254, 254));
 
-        btnFiltro.setBackground(new java.awt.Color(255, 255, 255));
-        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter.png"))); // NOI18N
-        btnFiltro.setComponentPopupMenu(jPopupMenu1);
-        btnFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnFiltro.setRolloverEnabled(true);
-        btnFiltro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter_black.png"))); // NOI18N
-        btnFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiltroActionPerformed(evt);
-            }
-        });
-
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -372,9 +358,7 @@ public class Libros extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(78, 78, 78)
                 .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegitro)
@@ -385,7 +369,6 @@ public class Libros extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFiltro)
                     .addComponent(btnActualizar)
                     .addComponent(btnRegitro))
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -529,15 +512,6 @@ public class Libros extends javax.swing.JFrame {
         System.out.println(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
-    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
-        Point fromFiltroButtonPosition = btnFiltro.getLocationOnScreen();
-        int x = (int) fromFiltroButtonPosition.getX();
-        int y = (int) fromFiltroButtonPosition.getY() + 50;
-        Point pointForFiltroFrame = new Point(x, y);
-        filtrarLibros.setLocation(pointForFiltroFrame);
-        filtrarLibros.setVisible(true);
-    }//GEN-LAST:event_btnFiltroActionPerformed
-
     private void btnRegitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegitroActionPerformed
         RegistroLibro nuevoRegistroDeLibro = new RegistroLibro();
         nuevoRegistroDeLibro.setVisible(true);
@@ -613,7 +587,6 @@ public class Libros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    public static javax.swing.JButton btnFiltro;
     public static javax.swing.JButton btnRegitro;
     private javax.swing.JFrame filtrarLibros;
     private javax.swing.JPanel header;
@@ -682,29 +655,6 @@ public class Libros extends javax.swing.JFrame {
         formattedNumLibros.append(numDeAutores);
         formattedNumLibros.append("</h1><h3>Autores</h3></center>");
         lblAutores.setText(formattedNumLibros + "");
-    }
-
-    private void crearPopMenuATabla() {
-        JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem menuItemElegir = new JMenuItem("Editar");
-        JMenuItem menuItemEliminar = new JMenuItem("Eliminar");
-        popupMenu.setPopupSize(100, 60);
-
-        popupMenu.add(menuItemElegir);
-        popupMenu.add(menuItemEliminar);
-
-        tblLibros.setComponentPopupMenu(popupMenu);
-
-        menuItemElegir.addActionListener((ActionEvent ae) -> {
-            Libro libroAEditar = new Libro();
-            EditarLibro editar = new EditarLibro();
-            editar.setVisible(true);
-        });
-
-        menuItemEliminar.addActionListener((ActionEvent ae) -> {
-
-        });
-
     }
 
 }

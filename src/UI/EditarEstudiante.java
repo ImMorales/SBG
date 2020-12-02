@@ -57,9 +57,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         txtIdentificador = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        boxGrupo = new javax.swing.JComboBox<>();
-        boxGrado = new javax.swing.JComboBox<>();
+        boxGrado = new javax.swing.JSpinner();
         jPanel12 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -106,17 +104,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("Grado");
-
-        jLabel11.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel11.setText("Grupo");
-
-        boxGrupo.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        boxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "A", "B", "C" }));
-
-        boxGrado.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6" }));
+        jLabel10.setText("Edad:");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -124,21 +112,12 @@ public class EditarEstudiante extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(14, Short.MAX_VALUE))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(boxGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(boxGrado)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,14 +127,10 @@ public class EditarEstudiante extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(boxGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel12.setBackground(new java.awt.Color(218, 218, 218));
@@ -271,8 +246,8 @@ public class EditarEstudiante extends javax.swing.JFrame {
         txtNombre.setText("" + editarEstudiante.getNombre());
         txtPaterno.setText("" + editarEstudiante.getPaterno());
         txtMaterno.setText("" + editarEstudiante.getMaterno());
-        boxGrado.setSelectedItem(editarEstudiante.getGrado() + "");
-        boxGrupo.setSelectedItem("" + editarEstudiante.getGrupo());
+        boxGrado.setValue(editarEstudiante.getGrado());
+
     }
 
     /**
@@ -311,12 +286,10 @@ public class EditarEstudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JComboBox<String> boxGrupo;
+    private javax.swing.JSpinner boxGrado;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
@@ -403,18 +376,6 @@ public class EditarEstudiante extends javax.swing.JFrame {
         } else {
             txtMaterno.setText(DIF_VAL);
         }
-
-        if (gradoWasEqual) {
-            boxGrado.setSelectedItem(gradoEnComun);
-        } else {
-            boxGrado.setSelectedIndex(0);
-        }
-
-        if (grupoWasEqual) {
-            boxGrupo.setSelectedItem(grupoEnComun);
-        } else {
-            boxGrupo.setSelectedIndex(0);
-        }
     }
 
     private void actualizarEstudiantes(Estudiante[] estudiantes) {
@@ -446,8 +407,8 @@ public class EditarEstudiante extends javax.swing.JFrame {
         nombre = txtNombre.getText();
         paterno = txtPaterno.getText();
         materno = txtMaterno.getText();
-        grado = Integer.parseInt((String) boxGrado.getSelectedItem());
-        grupo = (String) boxGrupo.getSelectedItem();
+        grado = (int) boxGrado.getValue();
+        grupo = "A";
     }
 
     private void actualizarEstudiante() {
