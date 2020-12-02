@@ -500,6 +500,11 @@ public class RegistroLibro extends JFrame {
 
         eliminarAutor.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         eliminarAutor.setText("Eliminar");
+        eliminarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarAutorActionPerformed(evt);
+            }
+        });
         autorOptionsMenu.add(eliminarAutor);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -985,6 +990,16 @@ public class RegistroLibro extends JFrame {
         mostrarEditoriales();
     }//GEN-LAST:event_eliminarEditorialActionPerformed
 
+    private void eliminarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAutorActionPerformed
+        int N = tblAutores.getSelectedRowCount();
+        int[] selectedRow = tblAutores.getSelectedRows();
+        for (int i = 0; i < N; i++) {
+            int idAutor = (int) tblAutores.getValueAt(selectedRow[i], 0);
+            eliminarAutorDeLaBD(idAutor);
+        }
+        mostrarTablaAutores();
+    }//GEN-LAST:event_eliminarAutorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1315,6 +1330,19 @@ public class RegistroLibro extends JFrame {
         cone.ConectarBasedeDatos();
         try {
             String query = "DELETE FROM editorial WHERE id_editorial = " + idEditorial;
+            PreparedStatement pstmt = cone.con.prepareStatement(query);
+            pstmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        cone.DesconectarBasedeDatos();
+    }
+
+    private void eliminarAutorDeLaBD(int idAutor) {
+        Logic.conexion cone = new Logic.conexion();
+        cone.ConectarBasedeDatos();
+        try {
+            String query = "DELETE FROM autor WHERE id_autor = " + idAutor;
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
