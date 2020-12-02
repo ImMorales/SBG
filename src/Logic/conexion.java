@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 public class conexion {
 
     private static String usuario_bd = "root";
-    private static String password_bd = "papibowser1999";
+    private static String password_bd = "password";
+    
+    
     private static String bd = "SiBi";
 
     public Connection con;

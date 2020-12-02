@@ -377,7 +377,7 @@ public class Reportes extends javax.swing.JFrame {
         lblREstudiantes.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
         lblREstudiantes.setForeground(new java.awt.Color(255, 255, 255));
         lblREstudiantes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblREstudiantes.setText("<html><h3>Estudiantes</html></h3>");
+        lblREstudiantes.setText("<html><h3>Clientes</html></h3>");
         lblREstudiantes.setOpaque(true);
 
         javax.swing.GroupLayout RestudiantesLayout = new javax.swing.GroupLayout(Restudiantes);
@@ -467,7 +467,7 @@ public class Reportes extends javax.swing.JFrame {
         lblRPersonal.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
         lblRPersonal.setForeground(new java.awt.Color(255, 255, 255));
         lblRPersonal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRPersonal.setText("<html><h3>Personal</html></h3>");
+        lblRPersonal.setText("<html><h3>Usuarios</html></h3>");
         lblRPersonal.setOpaque(true);
 
         javax.swing.GroupLayout RPersonalLayout = new javax.swing.GroupLayout(RPersonal);
@@ -662,16 +662,6 @@ public class Reportes extends javax.swing.JFrame {
      }
     }//GEN-LAST:event_RPrestamosMouseEntered
 
-    private void RPersonalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RPersonalMouseEntered
-    if(CheckPersonal == false){
-    RPersonal.setBackground(new Color(241,241,241));
-      }
-     else if(CheckPersonal == true){
-    
-     }
-    
-    }//GEN-LAST:event_RPersonalMouseEntered
-
     private void RLibroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RLibroMouseExited
      if(CheckLibro == false){
     RLibro.setBackground(new Color(255,255,255));
@@ -700,15 +690,6 @@ public class Reportes extends javax.swing.JFrame {
     // prestamo
      }
     }//GEN-LAST:event_RPrestamosMouseExited
-
-    private void RPersonalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RPersonalMouseExited
-     if(CheckPersonal == false){
-    RPersonal.setBackground(new Color(255,255,255));
-      }
-     else if(CheckPersonal == true){
-    // personal
-     }
-    }//GEN-LAST:event_RPersonalMouseExited
 
     private void RLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RLibroMouseClicked
       if(CheckLibro == false){
@@ -753,20 +734,6 @@ public class Reportes extends javax.swing.JFrame {
           CheckPrestamo=false;
       }
     }//GEN-LAST:event_RPrestamosMouseClicked
-
-    private void RPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RPersonalMouseClicked
-     if(CheckPersonal == false){
-          RPersonal.setBackground(new Color(0,255,0,60));
-          lblRPersonal.setText("<html><h3>Personal (✓)</html></h3>");
-          CheckPersonal=true;
-          
-      }
-     else if(CheckPersonal == true){
-         RPersonal.setBackground(new Color(255,255,255));
-          lblRPersonal.setText("<html><h3>Personal</html></h3>");
-          CheckPersonal=false;
-      }
-    }//GEN-LAST:event_RPersonalMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.dispose();
@@ -1235,6 +1202,39 @@ hiloaccion.start();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        Radver.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void RPersonalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RPersonalMouseEntered
+        if(CheckPersonal == false){
+            RPersonal.setBackground(new Color(241,241,241));
+        }
+        else if(CheckPersonal == true){
+
+        }
+
+    }//GEN-LAST:event_RPersonalMouseEntered
+
+    private void RPersonalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RPersonalMouseExited
+        if(CheckPersonal == false){
+            RPersonal.setBackground(new Color(255,255,255));
+        }
+        else if(CheckPersonal == true){
+            // personal
+        }
+    }//GEN-LAST:event_RPersonalMouseExited
+
+    private void RPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RPersonalMouseClicked
+        if(CheckPersonal == false){
+            RPersonal.setBackground(new Color(0,255,0,60));
+            lblRPersonal.setText("<html><h3>Personal (✓)</html></h3>");
+            CheckPersonal=true;
+
+        }
+        else if(CheckPersonal == true){
+            RPersonal.setBackground(new Color(255,255,255));
+            lblRPersonal.setText("<html><h3>Personal</html></h3>");
+            CheckPersonal=false;
+        }
+    }//GEN-LAST:event_RPersonalMouseClicked
 
     /**
      * @param args the command line arguments

@@ -44,7 +44,7 @@ public class Metodos_Reporte {
         try {
             
             Workbook book = new HSSFWorkbook();
-            Sheet sheet = (Sheet) book.createSheet("Estudiantes");
+            Sheet sheet = (Sheet) book.createSheet("Cleintes");
             //agregando foto al excel
             //cuidado con el perro
             
@@ -60,7 +60,7 @@ public class Metodos_Reporte {
             Row filatitulo = sheet.createRow(1); //combinaciones
             Cell celdatitulo = filatitulo.createCell(0);
             celdatitulo.setCellStyle(tituloEstilo);
-            celdatitulo.setCellValue("Primaria Guadalupe Victoria: Reporte de estudiantes");
+            celdatitulo.setCellValue("Sistema bibliotecario: Reporte de clientes");
             // fila de inicio, ultima fila de uso, la primera columna que usara, la ultima col
             sheet.addMergedRegion(new CellRangeAddress(1,2,0,5));
         
@@ -129,12 +129,12 @@ public class Metodos_Reporte {
             //FileOutputStream fileOut = new FileOutputStream(ruta+"\\Sibi_reporte_estudiantes "+hora+fecha+".xlsx");
             //
             try{
-            FileOutputStream fileOut = new FileOutputStream(ruta+"/Sibi_Estudiantes "+fecha+"&"+hora+".xlsx");
+            FileOutputStream fileOut = new FileOutputStream(ruta+"/Sibi_Clientes "+fecha+"&"+hora+".xlsx");
             book.write(fileOut);
             fileOut.close();
            
             }catch(Exception nl){
-            FileOutputStream fileOut = new FileOutputStream(ruta+"\\Sibi_Estudiantes "+fecha+"&"+hora+".xlsx");
+            FileOutputStream fileOut = new FileOutputStream(ruta+"\\Sibi_Clientes "+fecha+"&"+hora+".xlsx");
             book.write(fileOut);
             fileOut.close();
                 
@@ -180,7 +180,7 @@ public class Metodos_Reporte {
             Row filatitulo = sheet.createRow(1); //combinaciones
             Cell celdatitulo = filatitulo.createCell(0);
             celdatitulo.setCellStyle(tituloEstilo);
-            celdatitulo.setCellValue("Primaria Guadalupe Victoria: Reporte de libros");
+            celdatitulo.setCellValue("Sistema bibliotecario: Reporte de libros");
             // fila de inicio, ultima fila de uso, la primera columna que usara, la ultima col
             sheet.addMergedRegion(new CellRangeAddress(1,2,0,7));
         
@@ -304,7 +304,7 @@ public class Metodos_Reporte {
             Row filatitulo = sheet.createRow(1); //combinaciones
             Cell celdatitulo = filatitulo.createCell(0);
             celdatitulo.setCellStyle(tituloEstilo);
-            celdatitulo.setCellValue("Primaria Guadalupe Victoria: Reporte de prestamos");
+            celdatitulo.setCellValue("Sistema bibliotecario: Reporte de prestamos");
             // fila de inicio, ultima fila de uso, la primera columna que usara, la ultima col
             sheet.addMergedRegion(new CellRangeAddress(1,2,0,8));
         
@@ -419,7 +419,7 @@ public class Metodos_Reporte {
             Row filatitulo = sheet.createRow(1); //combinaciones
             Cell celdatitulo = filatitulo.createCell(0);
             celdatitulo.setCellStyle(tituloEstilo);
-            celdatitulo.setCellValue("Primaria Guadalupe Victoria: Reporte de personal");
+            celdatitulo.setCellValue("Sistema bibliotecario: Reporte de usuarios");
             // fila de inicio, ultima fila de uso, la primera columna que usara, la ultima col
             sheet.addMergedRegion(new CellRangeAddress(1,2,0,4));
         
