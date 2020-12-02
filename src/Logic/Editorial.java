@@ -2,8 +2,12 @@ package Logic;
 
 public class Editorial {
 
-    private String nombre;
     private int id;
+    private String nombre;
+
+    public Editorial() {
+
+    }
 
     public Editorial(String nombre) {
         this.nombre = nombre;
@@ -22,9 +26,24 @@ public class Editorial {
         return nombre;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString() {
-        return "Editorial{" + "nombre: " + nombre + ", id: " + id + '}';
+        return "Editorial{"
+                + "\n    ID: " + id
+                + "\n    Nombre: " + nombre
+                + "\n    }";
+    }
+
+    public boolean isNombreEmpty() {
+        return nombre.equals("");
     }
 
 }

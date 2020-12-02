@@ -1,14 +1,12 @@
 package UI;
 
-import Logic.Libro;
-import static UI.RegistroAutor.numDeAutores;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
+import javax.swing.JFrame;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -16,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
 
-public class Libros extends javax.swing.JFrame {
+public class Libros extends JFrame {
 
+    private int numDeAutores = 0;
     private int numeroDeLibros = 0;
-
     private DefaultTableModel modelLibros;
 
     public Libros() {
@@ -27,6 +25,7 @@ public class Libros extends javax.swing.JFrame {
         mostrarTablaLibros();
         mostrarNumeroDeLibros();
         mostrarNumeroDeAutores();
+        crearPopMenuATabla();
         placeHolder();
         actualizarBusqueda();
         setExtendedState(MAXIMIZED_BOTH);
@@ -42,7 +41,10 @@ public class Libros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        libroOptionsMenu = new javax.swing.JPopupMenu();
+        informacionOption = new javax.swing.JMenuItem();
+        editarOption = new javax.swing.JMenuItem();
+        eliminarOption = new javax.swing.JMenuItem();
         filtrarLibros = new javax.swing.JFrame();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -59,14 +61,34 @@ public class Libros extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        informacionDeLibro = new javax.swing.JFrame();
+        jPanel14 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lblLibros = new javax.swing.JLabel();
         lblAutores = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
+        btnFiltro = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnRegitro = new javax.swing.JButton();
         lblVolver = new javax.swing.JLabel();
@@ -87,6 +109,33 @@ public class Libros extends javax.swing.JFrame {
                 return true;
             }
         };
+
+        libroOptionsMenu.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                libroOptionsMenuPopupMenuWillBecomeVisible(evt);
+            }
+        });
+
+        informacionOption.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        informacionOption.setText("Mas información");
+        informacionOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                informacionOptionActionPerformed(evt);
+            }
+        });
+        libroOptionsMenu.add(informacionOption);
+
+        editarOption.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        editarOption.setText("Editar");
+        libroOptionsMenu.add(editarOption);
+
+        eliminarOption.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        eliminarOption.setText("Eliminar");
+        libroOptionsMenu.add(eliminarOption);
 
         filtrarLibros.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         filtrarLibros.setTitle("Filtrar");
@@ -260,6 +309,143 @@ public class Libros extends javax.swing.JFrame {
 
         filtrarLibros.getContentPane().add(jPanel13, java.awt.BorderLayout.PAGE_END);
 
+        informacionDeLibro.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        informacionDeLibro.setAlwaysOnTop(true);
+        informacionDeLibro.setMinimumSize(new java.awt.Dimension(635, 614));
+        informacionDeLibro.setUndecorated(true);
+        informacionDeLibro.setSize(new java.awt.Dimension(635, 614));
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setPreferredSize(new java.awt.Dimension(400, 81));
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 255));
+        jButton2.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Cerrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 51, 51));
+        jButton3.setText("Editar");
+        jPanel14.add(jButton3);
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(51, 51, 51));
+        jButton4.setText("Eliminar");
+        jPanel14.add(jButton4);
+
+        informacionDeLibro.getContentPane().add(jPanel14, java.awt.BorderLayout.PAGE_END);
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Nombre");
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("###");
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("Autor(es) :");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jTextArea1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        jTextArea1.setFocusable(false);
+        jTextArea1.setOpaque(false);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Páginas: ");
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Disponibles: ");
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Tipo: ");
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Editorial: ");
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Subgenero: ");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10))
+                            .addComponent(jLabel9))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        informacionDeLibro.getContentPane().add(jPanel15, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SiBi");
         setSize(new java.awt.Dimension(1280, 681));
@@ -278,15 +464,33 @@ public class Libros extends javax.swing.JFrame {
         jPanel7.setPreferredSize(new java.awt.Dimension(320, 90));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+
+        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jPanel16.add(jLabel11);
+
+        txtBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        txtBusqueda.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtBusqueda.setBorder(null);
         txtBusqueda.setMaximumSize(new java.awt.Dimension(320, 30));
         txtBusqueda.setMinimumSize(new java.awt.Dimension(80, 30));
         txtBusqueda.setPreferredSize(new java.awt.Dimension(320, 30));
-        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaActionPerformed(evt);
-            }
-        });
-        jPanel7.add(txtBusqueda, new java.awt.GridBagConstraints());
+        jPanel16.add(txtBusqueda);
+
+        jLabel12.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
+        jLabel12.setToolTipText("");
+        jPanel16.add(jLabel12);
+
+        jPanel7.add(jPanel16, new java.awt.GridBagConstraints());
 
         jPanel4.add(jPanel7, java.awt.BorderLayout.CENTER);
 
@@ -331,6 +535,18 @@ public class Libros extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(254, 254, 254));
 
+        btnFiltro.setBackground(new java.awt.Color(255, 255, 255));
+        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter.png"))); // NOI18N
+        btnFiltro.setComponentPopupMenu(libroOptionsMenu);
+        btnFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnFiltro.setRolloverEnabled(true);
+        btnFiltro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter_black.png"))); // NOI18N
+        btnFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltroActionPerformed(evt);
+            }
+        });
+
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -358,7 +574,9 @@ public class Libros extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addContainerGap()
+                .addComponent(btnFiltro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegitro)
@@ -369,6 +587,7 @@ public class Libros extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFiltro)
                     .addComponent(btnActualizar)
                     .addComponent(btnRegitro))
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -378,10 +597,11 @@ public class Libros extends javax.swing.JFrame {
 
         header.add(jPanel4, java.awt.BorderLayout.SOUTH);
 
-        lblVolver.setFont(new java.awt.Font("Gargi-1.2b", 1, 12)); // NOI18N
+        lblVolver.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lblVolver.setForeground(new java.awt.Color(255, 255, 255));
         lblVolver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/baseline_keyboard_backspace_white_18dp.png"))); // NOI18N
+        lblVolver.setToolTipText("Regresar");
         lblVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -407,7 +627,7 @@ public class Libros extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGap(0, 1069, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,7 +648,7 @@ public class Libros extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 346, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_END);
@@ -444,7 +664,7 @@ public class Libros extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 346, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.LINE_START);
@@ -459,9 +679,10 @@ public class Libros extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "ID", "Titulo", "Tipo", "Subgenero", "Editorial"
             }
         ));
+        tblLibros.setOpaque(false);
         tblLibros.setRowHeight(20);
         tblLibros.setShowVerticalLines(false);
         tblLibros.getTableHeader().setReorderingAllowed(false);
@@ -493,8 +714,7 @@ public class Libros extends javax.swing.JFrame {
 
             public void filterTable() {
                 String search = txtBusqueda.getText();
-                TableRowSorter<DefaultTableModel> sorter
-                        = new TableRowSorter<>(modelLibros);
+                TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelLibros);
                 tblLibros.setRowSorter(sorter);
                 sorter.setRowFilter(RowFilter.regexFilter("(?i)" + search));
             }
@@ -508,9 +728,14 @@ public class Libros extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
-    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-        System.out.println(txtBusqueda.getText());
-    }//GEN-LAST:event_txtBusquedaActionPerformed
+    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
+        Point fromFiltroButtonPosition = btnFiltro.getLocationOnScreen();
+        int x = (int) fromFiltroButtonPosition.getX();
+        int y = (int) fromFiltroButtonPosition.getY() + 50;
+        Point pointForFiltroFrame = new Point(x, y);
+        filtrarLibros.setLocation(pointForFiltroFrame);
+        filtrarLibros.setVisible(true);
+    }//GEN-LAST:event_btnFiltroActionPerformed
 
     private void btnRegitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegitroActionPerformed
         RegistroLibro nuevoRegistroDeLibro = new RegistroLibro();
@@ -532,6 +757,29 @@ public class Libros extends javax.swing.JFrame {
         filtrarLibros.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void libroOptionsMenuPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_libroOptionsMenuPopupMenuWillBecomeVisible
+        boolean multipleSelection = tblLibros.getSelectedRowCount() > 1;
+        editarOption.setEnabled(!multipleSelection);
+        informacionOption.setEnabled(!multipleSelection);
+
+    }//GEN-LAST:event_libroOptionsMenuPopupMenuWillBecomeVisible
+
+    private void informacionOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informacionOptionActionPerformed
+        informacionOption.setEnabled(false);
+        informacionDeLibro.setLocationRelativeTo(null);
+        informacionDeLibro.setVisible(true);
+    }//GEN-LAST:event_informacionOptionActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        informacionOption.setEnabled(true);
+        informacionDeLibro.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        txtBusqueda.setFocusable(true);
+
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     private void mostrarTablaLibros() {
         Logic.conexion con = new Logic.conexion();
         con.ConectarBasedeDatos();
@@ -541,13 +789,19 @@ public class Libros extends javax.swing.JFrame {
             PreparedStatement pstmt = con.con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             modelLibros = (DefaultTableModel) DbUtils.resultSetToTableModel(rs);
-            modelLibros.setColumnIdentifiers(new Object[]{"ID", "Libro", "Tipo", "Sub Genero", "Editorial"});
+            modelLibros.setColumnIdentifiers(new String[]{"ID", "Libro", "Tipo", "Sub Genero", "Editorial"});
+            tblLibros.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 15));
+            tblLibros.getTableHeader().setOpaque(false);
+            tblLibros.getTableHeader().setBackground(Color.red);
+            tblLibros.getTableHeader().setForeground(new Color(51, 51, 51));
+            tblLibros.setRowHeight(20);
             numeroDeLibros = modelLibros.getRowCount();
             tblLibros.setModel(modelLibros);
         } catch (SQLException e) {
             System.out.println(e);
         }
         con.DesconectarBasedeDatos();
+
     }
 
     /**
@@ -555,7 +809,8 @@ public class Libros extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+
+//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
@@ -576,6 +831,7 @@ public class Libros extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Libros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -587,10 +843,18 @@ public class Libros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    public static javax.swing.JButton btnFiltro;
     public static javax.swing.JButton btnRegitro;
+    private javax.swing.JMenuItem editarOption;
+    private javax.swing.JMenuItem eliminarOption;
     private javax.swing.JFrame filtrarLibros;
     private javax.swing.JPanel header;
+    private javax.swing.JFrame informacionDeLibro;
+    private javax.swing.JMenuItem informacionOption;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -599,12 +863,25 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -613,12 +890,14 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAutores;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblLibros;
     private javax.swing.JLabel lblVolver;
+    private javax.swing.JPopupMenu libroOptionsMenu;
     private javax.swing.JTable tblLibros;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
@@ -655,6 +934,10 @@ public class Libros extends javax.swing.JFrame {
         formattedNumLibros.append(numDeAutores);
         formattedNumLibros.append("</h1><h3>Autores</h3></center>");
         lblAutores.setText(formattedNumLibros + "");
+    }
+
+    private void crearPopMenuATabla() {
+        tblLibros.setComponentPopupMenu(libroOptionsMenu);
     }
 
 }

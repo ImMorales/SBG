@@ -1,5 +1,6 @@
 package Logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Libro {
@@ -12,7 +13,11 @@ public class Libro {
     private int numDePaginas;
     private int id;
     private List<Autor> autor;
-    private Editorial editorial;
+    private Editorial editorial = new Editorial();
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -85,15 +90,80 @@ public class Libro {
     @Override
     public String toString() {
         return "Libro {"
-                + " \n\t nombre: " + nombre
-                + ",\n\t descripción: " + desc
-                + ",\n\t tipo: " + tipo
-                + ",\n\t subgenero: " + subgenero
-                + ",\n\t cantidad: " + cantidad
-                + ",\n\t numDePaginas: " + numDePaginas
-                + ",\n\t id: " + id
-                + ",\n\t autor: " + autor
-                + ",\n\t editorial: " + editorial + "\n}";
+                + "\n    Id: " + id
+                + "\n    Nombre: " + nombre
+                + "\n    Descripción: " + desc
+                + "\n    Tipo: " + tipo
+                + "\n    Subgenero: " + subgenero
+                + "\n    Cantidad: " + cantidad
+                + "\n    NumDePaginas: " + numDePaginas
+                + "\n    " + autor
+                + "\n    " + editorial
+                + "\n}";
+    }
+
+    public boolean areDatosCorrectos() {
+        return isAutorValido()
+                && isEditorialValido()
+                && isNombreValido()
+                && isDescValido()
+                && isTipoValido()
+                && isSubgeneroValido()
+                && isNumPaginasValido();
+    }
+
+    public List<String> elementosFaltantes() {
+        List<String> faltante = new ArrayList<>(6);
+        if (!isNombreValido()) {
+            faltante.add("Nombre");
+        }
+        if (!isDescValido()) {
+            faltante.add("Descripción");
+        }
+        if (!isSubgeneroValido()) {
+            faltante.add("Subgenero");
+        }
+        if (!isTipoValido()) {
+            faltante.add("Tipo");
+        }
+        if (!isNumPaginasValido()) {
+            faltante.add("Número de páginas");
+        }
+        if (!isAutorValido()) {
+            faltante.add("Autor(es)");
+        }
+        if (!isEditorialValido()) {
+            faltante.add("Editorial");
+        }
+        return faltante;
+    }
+
+    private boolean isNombreValido() {
+        return !nombre.equals("");
+    }
+
+    private boolean isDescValido() {
+        return !desc.equals("");
+    }
+
+    private boolean isTipoValido() {
+        return !tipo.equals("Seleccionar");
+    }
+
+    private boolean isNumPaginasValido() {
+        return numDePaginas != 1;
+    }
+
+    private boolean isAutorValido() {
+        return autor != null;
+    }
+
+    private boolean isEditorialValido() {
+        return editorial != null;
+    }
+
+    private boolean isSubgeneroValido() {
+        return !subgenero.equals("Seleccionar");
     }
 
 }

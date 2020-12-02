@@ -10,17 +10,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
-public class RegistroLibro extends javax.swing.JFrame {
+public class RegistroLibro extends JFrame {
 
-    protected final Libro libro = new Libro();
+    private final Libro libro;
 
     public RegistroLibro() {
         initComponents();
         setLocationRelativeTo(null);
+        setupTableMenus();
         mostrarPlaceHolders();
+        libro = new Libro();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +33,7 @@ public class RegistroLibro extends javax.swing.JFrame {
         registrarEditorial = new javax.swing.JFrame();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        txtBusqueda = new javax.swing.JTextField();
+        txtBusquedaEditorial = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEditoriales = new javax.swing.JTable(){
             @Override
@@ -40,23 +43,29 @@ public class RegistroLibro extends javax.swing.JFrame {
                 return true;
             }
         };
-        btnAceptarEditorial = new javax.swing.JButton();
-        btnEliminarEditorial = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
-        txtNombre1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtNombreEditorial = new javax.swing.JTextField();
+        btnIngresarEditorial = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        tituloEditorial = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        btnAceptarEditorial = new javax.swing.JButton();
         btnCancelarEditorial = new javax.swing.JButton();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         registrarAutor = new javax.swing.JFrame();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         txtBusquedaAutor = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblAutores = new javax.swing.JTable();
+        tblAutores = new javax.swing.JTable(){
+            @Override
+            public boolean isCellEditable(int row,int column){
+                if(column == 0) return false;
+                if(column == 1) return false;
+                if(column == 2) return false;
+                if(column == 3) return false;
+                return true;
+            }
+        };
         jPanel11 = new javax.swing.JPanel();
         txtNombreAutor = new javax.swing.JTextField();
         txtPaternoAutor = new javax.swing.JTextField();
@@ -66,13 +75,19 @@ public class RegistroLibro extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
         btnAceptarAutor = new javax.swing.JButton();
-        btnEliminarAutor = new javax.swing.JButton();
         btnCancelarAutor = new javax.swing.JButton();
+        editorialOptionsMenu = new javax.swing.JPopupMenu();
+        aceptarEditorial = new javax.swing.JMenuItem();
+        editarEditorial = new javax.swing.JMenuItem();
+        eliminarEditorial = new javax.swing.JMenuItem();
+        autorOptionsMenu = new javax.swing.JPopupMenu();
+        aceptarAutor = new javax.swing.JMenuItem();
+        editarAutor = new javax.swing.JMenuItem();
+        eliminarAutor = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        btnRegistrarLibro = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtNombreLibro = new javax.swing.JTextField();
@@ -90,17 +105,26 @@ public class RegistroLibro extends javax.swing.JFrame {
         spnCantidad = new javax.swing.JSpinner();
         jPanel5 = new javax.swing.JPanel();
         btnRegistrarEditorial = new javax.swing.JButton();
-        btnRegistrarAutor = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        btnRegistrarAutor = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        lblAutores = new javax.swing.JLabel();
+        lblEditorial = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        btnRegistrarLibro = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         registrarEditorial.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         registrarEditorial.setTitle("Editorial");
-        registrarEditorial.setMaximumSize(new java.awt.Dimension(631, 262));
-        registrarEditorial.setMinimumSize(new java.awt.Dimension(631, 262));
-        registrarEditorial.setPreferredSize(new java.awt.Dimension(631, 262));
+        registrarEditorial.setAlwaysOnTop(true);
+        registrarEditorial.setMinimumSize(new java.awt.Dimension(584, 244));
         registrarEditorial.setResizable(false);
-        registrarEditorial.setSize(new java.awt.Dimension(631, 262));
+        registrarEditorial.setSize(new java.awt.Dimension(584, 244));
+        registrarEditorial.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                registrarEditorialWindowOpened(evt);
+            }
+        });
 
         jPanel6.setBackground(new java.awt.Color(0, 102, 255));
         jPanel6.setLayout(new java.awt.BorderLayout());
@@ -109,61 +133,32 @@ public class RegistroLibro extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(254, 254, 254));
         jPanel7.setPreferredSize(new java.awt.Dimension(320, 320));
 
-        txtBusqueda.setMinimumSize(new java.awt.Dimension(80, 30));
-        txtBusqueda.setPreferredSize(new java.awt.Dimension(320, 30));
-        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaActionPerformed(evt);
-            }
-        });
-        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBusquedaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBusquedaKeyTyped(evt);
-            }
-        });
+        txtBusquedaEditorial.setMinimumSize(new java.awt.Dimension(80, 30));
+        txtBusquedaEditorial.setPreferredSize(new java.awt.Dimension(320, 30));
 
         tblEditoriales.setAutoCreateRowSorter(true);
         tblEditoriales.setModel(new javax.swing.table.DefaultTableModel());
+        tblEditoriales.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         tblEditoriales.setShowVerticalLines(false);
         tblEditoriales.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblEditoriales);
 
-        btnAceptarEditorial.setBackground(new java.awt.Color(102, 102, 255));
-        btnAceptarEditorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        btnAceptarEditorial.setForeground(new java.awt.Color(0, 0, 51));
-        btnAceptarEditorial.setText("Aceptar");
-        btnAceptarEditorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarEditorialActionPerformed(evt);
-            }
-        });
-
-        btnEliminarEditorial.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnEliminarEditorial.setText("Eliminar");
-        btnEliminarEditorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarEditorialActionPerformed(evt);
-            }
-        });
-
-        jPanel8.setBackground(new java.awt.Color(218, 218, 218));
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
-        txtNombre1.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombre1ActionPerformed(evt);
+                txtNombreEditorialActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresarEditorial.setBackground(new java.awt.Color(0, 102, 255));
+        btnIngresarEditorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        btnIngresarEditorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresarEditorial.setText("Registrar");
+        btnIngresarEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIngresarEditorialActionPerformed(evt);
             }
         });
 
@@ -179,12 +174,12 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(txtNombreEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(89, 89, 89))
+                .addContainerGap(80, Short.MAX_VALUE)
+                .addComponent(btnIngresarEditorial)
+                .addGap(79, 79, 79))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,16 +187,30 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtNombreEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIngresarEditorial)
+                .addContainerGap())
         );
 
-        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("Registrar nueva editorial");
+        tituloEditorial.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        tituloEditorial.setForeground(new java.awt.Color(51, 51, 51));
+        tituloEditorial.setText("Registrar nueva editorial");
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnAceptarEditorial.setBackground(new java.awt.Color(0, 102, 255));
+        btnAceptarEditorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        btnAceptarEditorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptarEditorial.setText("Aceptar");
+        btnAceptarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarEditorialActionPerformed(evt);
+            }
+        });
+        jPanel13.add(btnAceptarEditorial);
+
+        btnCancelarEditorial.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarEditorial.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnCancelarEditorial.setText("cancelar");
         btnCancelarEditorial.addActionListener(new java.awt.event.ActionListener() {
@@ -209,67 +218,59 @@ public class RegistroLibro extends javax.swing.JFrame {
                 btnCancelarEditorialActionPerformed(evt);
             }
         });
+        jPanel13.add(btnCancelarEditorial);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(txtBusquedaEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(btnCancelarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminarEditorial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAceptarEditorial))))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tituloEditorial)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(txtBusquedaEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tituloEditorial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminarEditorial)
-                            .addComponent(btnAceptarEditorial)
-                            .addComponent(btnCancelarEditorial)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         registrarEditorial.getContentPane().add(jPanel7, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("jMenu1");
-
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("jMenuItem2");
-        jMenu1.add(jMenuItem2);
-
         registrarAutor.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         registrarAutor.setTitle("Autor (es)");
+        registrarAutor.setAlwaysOnTop(true);
         registrarAutor.setMinimumSize(new java.awt.Dimension(697, 402));
         registrarAutor.setResizable(false);
         registrarAutor.setSize(new java.awt.Dimension(697, 402));
+        registrarAutor.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                registrarAutorWindowOpened(evt);
+            }
+        });
 
         jPanel9.setBackground(new java.awt.Color(0, 102, 255));
         jPanel9.setLayout(new java.awt.BorderLayout());
@@ -296,7 +297,7 @@ public class RegistroLibro extends javax.swing.JFrame {
         tblAutores.setShowVerticalLines(false);
         jScrollPane3.setViewportView(tblAutores);
 
-        jPanel11.setBackground(new java.awt.Color(218, 218, 218));
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         txtMaternoAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -320,7 +321,9 @@ public class RegistroLibro extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Apellido materno:");
 
-        btnRegistrar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnRegistrar.setBackground(new java.awt.Color(0, 102, 255));
+        btnRegistrar.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,9 +346,9 @@ public class RegistroLibro extends javax.swing.JFrame {
                     .addComponent(txtMaternoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegistrar)
-                .addGap(78, 78, 78))
+                .addGap(72, 72, 72))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,9 +365,9 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(4, 4, 4)
                 .addComponent(txtMaternoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(btnRegistrar)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -372,24 +375,20 @@ public class RegistroLibro extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Registrar nuevo autor");
 
-        btnAceptarAutor.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnAceptarAutor.setBackground(new java.awt.Color(0, 102, 255));
         btnAceptarAutor.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        btnAceptarAutor.setForeground(new java.awt.Color(0, 0, 51));
+        btnAceptarAutor.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptarAutor.setText("Aceptar");
         btnAceptarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarAutorActionPerformed(evt);
             }
         });
+        jPanel12.add(btnAceptarAutor);
 
-        btnEliminarAutor.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnEliminarAutor.setText("Eliminar");
-        btnEliminarAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarAutorActionPerformed(evt);
-            }
-        });
-
+        btnCancelarAutor.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarAutor.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnCancelarAutor.setText("cancelar");
         btnCancelarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -397,6 +396,7 @@ public class RegistroLibro extends javax.swing.JFrame {
                 btnCancelarAutorActionPerformed(evt);
             }
         });
+        jPanel12.add(btnCancelarAutor);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -412,21 +412,17 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jLabel1)
-                        .addContainerGap())
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(btnCancelarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminarAutor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAceptarAutor)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))))))
+                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE)))
+                .addGap(19, 19, 19))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,29 +430,84 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(txtBusquedaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminarAutor)
-                            .addComponent(btnAceptarAutor)
-                            .addComponent(btnCancelarAutor)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         registrarAutor.getContentPane().add(jPanel10, java.awt.BorderLayout.CENTER);
 
+        editorialOptionsMenu.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                editorialOptionsMenuPopupMenuWillBecomeVisible(evt);
+            }
+        });
+
+        aceptarEditorial.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        aceptarEditorial.setText("Aceptar");
+        aceptarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarEditorialActionPerformed(evt);
+            }
+        });
+        editorialOptionsMenu.add(aceptarEditorial);
+
+        editarEditorial.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        editarEditorial.setText("Editar");
+        editarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarEditorialActionPerformed(evt);
+            }
+        });
+        editorialOptionsMenu.add(editarEditorial);
+
+        eliminarEditorial.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        eliminarEditorial.setText("Eliminar");
+        eliminarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarEditorialActionPerformed(evt);
+            }
+        });
+        editorialOptionsMenu.add(eliminarEditorial);
+
+        autorOptionsMenu.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                autorOptionsMenuPopupMenuWillBecomeVisible(evt);
+            }
+        });
+
+        aceptarAutor.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        aceptarAutor.setText("Aceptar");
+        autorOptionsMenu.add(aceptarAutor);
+
+        editarAutor.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        editarAutor.setText("Editar");
+        autorOptionsMenu.add(editarAutor);
+
+        eliminarAutor.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        eliminarAutor.setText("Eliminar");
+        autorOptionsMenu.add(eliminarAutor);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar libro");
-        setMaximumSize(new java.awt.Dimension(672, 400));
-        setMinimumSize(new java.awt.Dimension(672, 400));
-        setPreferredSize(new java.awt.Dimension(672, 400));
+        setAlwaysOnTop(true);
+        setMinimumSize(new java.awt.Dimension(680, 356));
         setResizable(false);
-        setSize(new java.awt.Dimension(672, 400));
+        setSize(new java.awt.Dimension(680, 356));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -472,30 +523,12 @@ public class RegistroLibro extends javax.swing.JFrame {
         jPanel4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jPanel4.setPreferredSize(new java.awt.Dimension(300, 320));
 
-        btnRegistrarLibro.setBackground(new java.awt.Color(102, 102, 255));
-        btnRegistrarLibro.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 51));
-        btnRegistrarLibro.setText("Registrar");
-        btnRegistrarLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarLibroActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBackground(new java.awt.Color(218, 218, 218));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Nombre");
+        jLabel5.setText("Nombre:");
 
         txtNombreLibro.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
 
@@ -510,7 +543,7 @@ public class RegistroLibro extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText("Descripción");
+        jLabel7.setText("Descripción:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -544,18 +577,18 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(218, 218, 218));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         spnPaginas.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Número de páginas");
+        jLabel6.setText("Número de páginas:");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Subgenero");
+        jLabel3.setText("Subgenero:");
 
         boxSubgenero.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         boxSubgenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Al Sol Solito", "Astrolabio", "Cometas Convidados", "Pasos de Luna", "Espejo de Urania" }));
@@ -563,14 +596,14 @@ public class RegistroLibro extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Tipo");
+        jLabel2.setText("Tipo:");
 
         boxTipo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         boxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Informativo", "Literarios" }));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Cantidad");
+        jLabel4.setText("Cantidad:");
 
         spnCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
@@ -623,24 +656,21 @@ public class RegistroLibro extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(218, 218, 218));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         btnRegistrarEditorial.setBackground(new java.awt.Color(255, 255, 255));
-        btnRegistrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add.png"))); // NOI18N
+        btnRegistrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editorial.png"))); // NOI18N
+        btnRegistrarEditorial.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnRegistrarEditorial.setMaximumSize(new java.awt.Dimension(75, 52));
         btnRegistrarEditorial.setMinimumSize(new java.awt.Dimension(75, 52));
+        btnRegistrarEditorial.setPreferredSize(new java.awt.Dimension(75, 52));
+        btnRegistrarEditorial.setRolloverEnabled(true);
+        btnRegistrarEditorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editorial_black.png"))); // NOI18N
+        btnRegistrarEditorial.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editorial_black.png"))); // NOI18N
         btnRegistrarEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarEditorialActionPerformed(evt);
-            }
-        });
-
-        btnRegistrarAutor.setBackground(new java.awt.Color(255, 255, 255));
-        btnRegistrarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add.png"))); // NOI18N
-        btnRegistrarAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarAutorActionPerformed(evt);
             }
         });
 
@@ -648,70 +678,121 @@ public class RegistroLibro extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setText("Editorial:");
 
+        btnRegistrarAutor.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fancy.png"))); // NOI18N
+        btnRegistrarAutor.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnRegistrarAutor.setMaximumSize(new java.awt.Dimension(75, 52));
+        btnRegistrarAutor.setMinimumSize(new java.awt.Dimension(75, 52));
+        btnRegistrarAutor.setPreferredSize(new java.awt.Dimension(75, 52));
+        btnRegistrarAutor.setRolloverEnabled(true);
+        btnRegistrarAutor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fancy_black.png"))); // NOI18N
+        btnRegistrarAutor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fancy_black.png"))); // NOI18N
+        btnRegistrarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarAutorActionPerformed(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel14.setText("Autor (es):");
+        jLabel14.setText("Autor(es):");
+
+        lblAutores.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        lblAutores.setForeground(new java.awt.Color(51, 51, 51));
+        lblAutores.setText("0");
+
+        lblEditorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        lblEditorial.setForeground(new java.awt.Color(51, 51, 51));
+        lblEditorial.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(btnRegistrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistrarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAutores))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnRegistrarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegistrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEditorial)))
+                .addGap(48, 48, 48))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrarAutor))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAutores)
+                    .addComponent(lblEditorial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegistrarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnRegistrarLibro.setBackground(new java.awt.Color(0, 102, 255));
+        btnRegistrarLibro.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        btnRegistrarLibro.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarLibro.setText("Registrar");
+        btnRegistrarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarLibroActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnRegistrarLibro);
+
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnCancelar);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(btnRegistrarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancelar)
-                            .addComponent(btnRegistrarLibro))))
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -728,59 +809,46 @@ public class RegistroLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLibroActionPerformed
-        libro.setNombre(txtNombreLibro.getText().trim());
-        libro.setDesc(txtDesc.getText().trim());
-        libro.setSubgenero(String.valueOf(boxSubgenero.getSelectedItem()));
-        libro.setTipo(String.valueOf(boxTipo.getSelectedItem()));
-        libro.setCantidad((int) spnCantidad.getValue());
-        libro.setNumDePaginas((int) spnPaginas.getValue());
-        System.out.println(libro);
-        if (Libros.btnRegitro != null) {
-            Libros.btnRegitro.setEnabled(true);
+        setupInformacionDelLibro();
+        if (libro.areDatosCorrectos()) {
+            ingresarLibroEnBD();
+            enlazarLibroConAutor();
+            if (Libros.btnRegitro != null) {
+                Libros.btnRegitro.setEnabled(true);
+            }
+            this.dispose();
+        } else {
+            mostrarMensajeConElementosFaltantes();
         }
-        this.dispose();
+
     }//GEN-LAST:event_btnRegistrarLibroActionPerformed
 
-    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-
-    }//GEN-LAST:event_txtBusquedaActionPerformed
-
-    private void txtBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyPressed
-
-    }//GEN-LAST:event_txtBusquedaKeyPressed
-
-    private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusquedaKeyTyped
-
     private void btnAceptarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEditorialActionPerformed
-        int N = tblEditoriales.getColumnCount();
-        Object[] datos = new Object[N];
-        for (int i = 0; i < N; i++) {
-            datos[i] = tblEditoriales.getValueAt(tblEditoriales.getSelectedRow(), i);
-        }
-        int idEditorial = (int) datos[0];
-        String nombreEditorial = String.valueOf(datos[1]);
-        Editorial editorial = new Editorial(idEditorial, nombreEditorial);
-        libro.setEditorial(editorial);
-        registrarEditorial.dispose();
-        this.setVisible(true);
+        aceptarEditorialSeleccionada();
     }//GEN-LAST:event_btnAceptarEditorialActionPerformed
 
-    private void btnEliminarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEditorialActionPerformed
-        int editorialId = (int) tblEditoriales.getValueAt(tblEditoriales.getSelectedRow(), 0);
-        eliminarEditorialById(editorialId);
-        this.setVisible(true);
-        registrarEditorial.dispose();
-    }//GEN-LAST:event_btnEliminarEditorialActionPerformed
+    private void txtNombreEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEditorialActionPerformed
+        if (btnIngresarEditorial.getText().equals("Registrar")) {
+            registrarNuevaEditorial();
+        } else {
+            actualizarEditorial();
+            JOptionPane.showMessageDialog(null, "Elemento actualizado", "Actualizacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNombreEditorialActionPerformed
 
-    private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
+    private void btnIngresarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarEditorialActionPerformed
+        if (btnIngresarEditorial.getText().equals("Registrar")) {
+            registrarNuevaEditorial();
+        } else {
+            registrarEditorial.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(null, "Elemento actualizado", "Actualizacion", JOptionPane.INFORMATION_MESSAGE);
+            registrarEditorial.setAlwaysOnTop(true);
+            tituloEditorial.setText("Registrar nueva editorial");
+            txtNombreEditorial.setText("");
+            btnIngresarEditorial.setText("Registrar");
+        }
 
-    }//GEN-LAST:event_txtNombre1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnIngresarEditorialActionPerformed
 
     private void btnRegistrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAutorActionPerformed
         registrarAutor.setLocationRelativeTo(null);
@@ -792,6 +860,7 @@ public class RegistroLibro extends javax.swing.JFrame {
 
     private void btnRegistrarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEditorialActionPerformed
         registrarEditorial.setLocationRelativeTo(null);
+        tblEditoriales.setComponentPopupMenu(editorialOptionsMenu);
         mostrarEditoriales();
         registrarEditorial.setVisible(true);
         this.dispose();
@@ -802,10 +871,21 @@ public class RegistroLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaternoAutorActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (areCamposParaRegistrarAutorCorrectos()) {
-
+        String nombreAutor = txtNombreAutor.getText().trim();
+        String paternoAutor = txtPaternoAutor.getText().trim();
+        String maternoAutor = txtMaternoAutor.getText().trim();
+        Autor a;
+        if (maternoAutor.equals("")) {
+            a = Autor.getAutorInstance(nombreAutor, paternoAutor);
         } else {
+            a = Autor.getAutorInstance(nombreAutor, paternoAutor, maternoAutor);
+        }
+        if (!areCamposParaRegistrarAutorEmpty()) {
+            registrarAutor(a);
+        } else {
+            registrarAutor.setAlwaysOnTop(false);
             JOptionPane.showMessageDialog(null, "Ingresa valores en los campos de autor", "Error", 0);
+            registrarAutor.setAlwaysOnTop(true);
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -813,26 +893,35 @@ public class RegistroLibro extends javax.swing.JFrame {
         List<Autor> autores = new ArrayList<>();
         int N = tblAutores.getSelectedRowCount();
         int M = tblAutores.getColumnCount();
-        Object[] datos = new Object[M];
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                datos[j] = tblAutores.getValueAt(tblAutores.getSelectedRows()[i], j);
+        if (N > 0) {
+            Object[] datos = new Object[M];
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < M; j++) {
+                    datos[j] = tblAutores.getValueAt(tblAutores.getSelectedRows()[i], j);
+                }
+                String idAutor = String.valueOf(datos[0]);
+                String nombreAutor = String.valueOf(datos[1]);
+                String paternoAutor = String.valueOf(datos[2]);
+                String maternoAutor = String.valueOf(datos[3]);
+                Autor a;
+                if (maternoAutor.equals("")) {
+                    a = Autor.getAutorInstanceWithId(idAutor, nombreAutor, paternoAutor);
+                } else {
+                    a = Autor.getAutorInstanceWithId(idAutor, nombreAutor, paternoAutor, maternoAutor);
+                }
+                autores.add(a);
             }
-            String idAutor = String.valueOf(datos[0]);
-            String nombreAutor = String.valueOf(datos[1]);
-            String paternoAutor = String.valueOf(datos[2]);
-            String maternoAutor = String.valueOf(datos[3]);
-            Autor autor = crearAutor(idAutor, nombreAutor, paternoAutor, maternoAutor);
-            autores.add(autor);
+            libro.setAutor(autores);
+            registrarAutor.dispose();
+            lblAutores.setText("" + libro.getAutor().size());
+            this.setVisible(true);
+        } else {
+            registrarAutor.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(null, "Seleccione al menos un(a) autor(a)", "Error", JOptionPane.ERROR_MESSAGE);
+            registrarAutor.setAlwaysOnTop(false);
         }
-        libro.setAutor(autores);
-        registrarAutor.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_btnAceptarAutorActionPerformed
 
-    private void btnEliminarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarAutorActionPerformed
+    }//GEN-LAST:event_btnAceptarAutorActionPerformed
 
     private void btnCancelarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEditorialActionPerformed
         registrarEditorial.dispose();
@@ -849,6 +938,52 @@ public class RegistroLibro extends javax.swing.JFrame {
         registrarAutor.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_btnCancelarAutorActionPerformed
+
+    private void registrarEditorialWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_registrarEditorialWindowOpened
+
+    }//GEN-LAST:event_registrarEditorialWindowOpened
+
+    private void editorialOptionsMenuPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_editorialOptionsMenuPopupMenuWillBecomeVisible
+        int editorialesSeleccionadas = tblEditoriales.getSelectedRowCount();
+        boolean areMultiplesEditorialesSeleccionadas = editorialesSeleccionadas > 1;
+        aceptarEditorial.setEnabled(!areMultiplesEditorialesSeleccionadas);
+        editarEditorial.setEnabled(!areMultiplesEditorialesSeleccionadas);
+    }//GEN-LAST:event_editorialOptionsMenuPopupMenuWillBecomeVisible
+
+    private void registrarAutorWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_registrarAutorWindowOpened
+
+    }//GEN-LAST:event_registrarAutorWindowOpened
+
+    private void autorOptionsMenuPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_autorOptionsMenuPopupMenuWillBecomeVisible
+        int autoresSeleccionados = tblAutores.getSelectedRowCount();
+        boolean areMultiplesAuotresSeleccionados = autoresSeleccionados > 1;
+        editarAutor.setEnabled(!areMultiplesAuotresSeleccionados);
+    }//GEN-LAST:event_autorOptionsMenuPopupMenuWillBecomeVisible
+
+    private void aceptarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarEditorialActionPerformed
+        aceptarEditorialSeleccionada();
+    }//GEN-LAST:event_aceptarEditorialActionPerformed
+
+    private void editarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEditorialActionPerformed
+        int selectedRow = tblEditoriales.getSelectedRow();
+        String nombreEditorial = (String) tblEditoriales.getValueAt(selectedRow, 1);
+        int idEditorial = (int) tblEditoriales.getValueAt(selectedRow, 0);
+        Editorial e = new Editorial(idEditorial, nombreEditorial);
+        System.out.println(e);
+        tituloEditorial.setText("Editar editorial");
+        btnIngresarEditorial.setText("Guardar");
+        txtNombreEditorial.setText(e.getNombre());
+    }//GEN-LAST:event_editarEditorialActionPerformed
+
+    private void eliminarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEditorialActionPerformed
+        int N = tblEditoriales.getSelectedRowCount();
+        int[] selectedRow = tblEditoriales.getSelectedRows();
+        for (int i = 0; i < N; i++) {
+            int idEditorial = (int) tblEditoriales.getValueAt(selectedRow[i], 0);
+            eliminarEditorialDeLaBD(idEditorial);
+        }
+        mostrarEditoriales();
+    }//GEN-LAST:event_eliminarEditorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -876,6 +1011,7 @@ public class RegistroLibro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegistroLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -886,6 +1022,9 @@ public class RegistroLibro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aceptarAutor;
+    private javax.swing.JMenuItem aceptarEditorial;
+    private javax.swing.JPopupMenu autorOptionsMenu;
     private javax.swing.JComboBox<String> boxSubgenero;
     private javax.swing.JComboBox<String> boxTipo;
     private javax.swing.JButton btnAceptarAutor;
@@ -893,15 +1032,17 @@ public class RegistroLibro extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelarAutor;
     private javax.swing.JButton btnCancelarEditorial;
-    private javax.swing.JButton btnEliminarAutor;
-    private javax.swing.JButton btnEliminarEditorial;
+    private javax.swing.JButton btnIngresarEditorial;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarAutor;
     private javax.swing.JButton btnRegistrarEditorial;
     private javax.swing.JButton btnRegistrarLibro;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem editarAutor;
+    private javax.swing.JMenuItem editarEditorial;
+    private javax.swing.JPopupMenu editorialOptionsMenu;
+    private javax.swing.JMenuItem eliminarAutor;
+    private javax.swing.JMenuItem eliminarEditorial;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -914,12 +1055,12 @@ public class RegistroLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -931,83 +1072,27 @@ public class RegistroLibro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblAutores;
+    private javax.swing.JLabel lblEditorial;
     private javax.swing.JFrame registrarAutor;
     private javax.swing.JFrame registrarEditorial;
     private javax.swing.JSpinner spnCantidad;
     private javax.swing.JSpinner spnPaginas;
     private javax.swing.JTable tblAutores;
     private javax.swing.JTable tblEditoriales;
-    private javax.swing.JTextField txtBusqueda;
+    private javax.swing.JLabel tituloEditorial;
     private javax.swing.JTextField txtBusquedaAutor;
+    private javax.swing.JTextField txtBusquedaEditorial;
     private javax.swing.JTextArea txtDesc;
     private javax.swing.JTextField txtMaternoAutor;
-    private javax.swing.JTextField txtNombre1;
     private javax.swing.JTextField txtNombreAutor;
+    private javax.swing.JTextField txtNombreEditorial;
     private javax.swing.JTextField txtNombreLibro;
     private javax.swing.JTextField txtPaternoAutor;
     // End of variables declaration//GEN-END:variables
 
     private void mostrarPlaceHolders() {
-        new TextPrompt("Ingrese nombre del Libro", txtNombreLibro);
-        new TextPrompt("Ingrese la descripción de la contraportada", txtDesc);
-    }
 
-    private void registrarLibro() {
-        asignarValoresALibro();
-//        Logic.conexion con = new Logic.conexion();
-//        con.ConectarBasedeDatos();
-//        Statement statement = con.sentencia;
-//        try {
-//            statement.executeUpdate("insert into libro"
-//                    + "(nombre, descripcion, tipo, sub_genero, cantidad)"
-//                    + "values("
-//                    + ", \"" + nombre
-//                    + "\", '" + desc
-//                    + "', '" + tipo
-//                    + "', '" + subgenero
-//                    + "', " + cantidad
-//                    + ")");
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-    }
-
-    private void deleteAutorLibroRelationship() {
-        Logic.conexion cone = new Logic.conexion();
-        cone.ConectarBasedeDatos();
-        try {
-            String query = "DELETE FROM libro_has_autor WHERE libro_id_libro = " + ""
-                    + ";";
-
-            PreparedStatement pstmt = cone.con.prepareStatement(query);
-            pstmt.execute();
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        cone.DesconectarBasedeDatos();
-    }
-
-    private boolean areCamposCorrectosParaRegistro() {
-        return !(txtDesc.getText().equals("") || txtNombreLibro.getText().equals("")
-                || boxSubgenero.getSelectedIndex() == 0
-                || boxTipo.getSelectedIndex() == 0 || libro.getEditorial() == null);
-
-    }
-
-    private void asignarValoresALibro() {
-        String nombre = txtNombreLibro.getText();
-        String desc = txtDesc.getText();
-        String subgenero = String.valueOf(boxSubgenero.getSelectedItem());
-        String tipo = String.valueOf(boxTipo.getSelectedItem());
-        int cantidad = (int) spnCantidad.getValue();
-        int paginas = (int) spnPaginas.getValue();
-        libro.setNombre(nombre);
-        libro.setDesc(desc);
-        libro.setSubgenero(subgenero);
-        libro.setTipo(tipo);
-        libro.setCantidad(cantidad);
-        libro.setNumDePaginas(paginas);
     }
 
     private void mostrarEditoriales() {
@@ -1028,23 +1113,19 @@ public class RegistroLibro extends javax.swing.JFrame {
         con.DesconectarBasedeDatos();
     }
 
-    private boolean areCamposParaRegistrarAutorCorrectos() {
-        return !(txtNombreAutor.getText().equals("")
-                || txtPaternoAutor.getText().equals(""));
+    private boolean areCamposParaRegistrarAutorEmpty() {
+        return txtNombreAutor.getText().trim().equals("")
+                && txtPaternoAutor.getText().trim().equals("")
+                && txtMaternoAutor.getText().trim().equals("");
     }
 
     private void mostrarPlaceHolderEnAutor() {
         new TextPrompt("Buscar autor", txtBusquedaAutor);
     }
 
-    private void eliminarEditorialById(int editorialId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     private void mostrarTablaAutores() {
         Logic.conexion con = new Logic.conexion();
         con.ConectarBasedeDatos();
-
         try {
             String query = "SELECT * FROM autor";
             PreparedStatement pstmt = con.con.prepareStatement(query);
@@ -1052,20 +1133,198 @@ public class RegistroLibro extends javax.swing.JFrame {
             DefaultTableModel modelAutor = (DefaultTableModel) DbUtils.resultSetToTableModel(rs);
             modelAutor.setColumnIdentifiers(new Object[]{"ID", "Nombre", "Apellido Paterno", "Apellido Materno"});
             tblAutores.setModel(modelAutor);
-
         } catch (SQLException e) {
             System.out.println(e);
         }
         con.DesconectarBasedeDatos();
     }
 
-    private Autor crearAutor(String idAutor, String nombreAutor, String paternoAutor, String maternoAutor) {
-        Autor a = new Autor();
-        a.setIdentificador(idAutor);
-        a.setNombre(nombreAutor);
-        a.setPaterno(paternoAutor);
-        a.setMaterno(maternoAutor);
-        return a;
+    private void registrarAutor(Autor a) {
+        Logic.conexion con = new Logic.conexion();
+        con.ConectarBasedeDatos();
+        Statement s = con.sentencia;
+
+        boolean hasMaterno = !(a.getMaterno() == null);
+        String query = "INSERT INTO autor(nombre, apellido_paterno"
+                .concat(hasMaterno ? ", apellido_materno)" : ")")
+                .concat("VALUES(")
+                .concat("\"" + a.getNombre()).concat("\" ,")
+                .concat("\"" + a.getPaterno() + "\"")
+                .concat(hasMaterno ? ", \"" + a.getMaterno() + "\")" : ");");
+
+        try {
+            s.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mostrarTablaAutores();
+        }
+        con.DesconectarBasedeDatos();
+    }
+
+    private void registrarNuevaEditorial() {
+        String nombreEditorial = txtNombreEditorial.getText().trim();
+        libro.getEditorial().setNombre(nombreEditorial);
+        if (!libro.getEditorial().isNombreEmpty()) {
+            ingresarEditorialEnBD(nombreEditorial);
+            mostrarEditoriales();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        txtNombreEditorial.setText("");
+    }
+
+    private void ingresarEditorialEnBD(String nombreEditorial) {
+        Logic.conexion con = new Logic.conexion();
+        con.ConectarBasedeDatos();
+        Statement statement = con.sentencia;
+        String query = "INSERT INTO editorial (nombre)"
+                .concat("VALUES (")
+                .concat("'" + nombreEditorial + "')");
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    private void ingresarLibroEnBD() {
+        Logic.conexion con = new Logic.conexion();
+        con.ConectarBasedeDatos();
+        Statement statement = con.sentencia;
+        String query = "INSERT INTO libro (nombre, descripcion, tipo, sub_genero, cantidad, editorial, num_paginas)"
+                + "VALUES ("
+                + "'" + libro.getNombre() + "',"
+                + "'" + libro.getDesc() + "',"
+                + "'" + libro.getTipo() + "',"
+                + "'" + libro.getSubgenero() + "',"
+                + "" + libro.getCantidad() + ","
+                + "'" + libro.getEditorial().getNombre() + "',"
+                + "" + libro.getNumDePaginas() + ")";
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    private void enlazarLibroConAutor() {
+        libro.setId(getIdDelLibroRecienIngresado());
+        for (int i = 0; i < libro.getAutor().size(); i++) {
+            enlazarEsteAutorConLibroEnBD(libro.getAutor().get(i));
+        }
+    }
+
+    private int getIdDelLibroRecienIngresado() {
+        int id = 0;
+        Logic.conexion con = new Logic.conexion();
+        con.ConectarBasedeDatos();
+        String query = "SELECT * FROM libro WHERE ";
+        query += "nombre = \"" + libro.getNombre() + "\" AND "
+                + "descripcion = \"" + libro.getDesc() + "\" AND "
+                + "tipo = \"" + libro.getTipo() + "\" AND "
+                + "sub_genero = \"" + libro.getSubgenero() + "\" AND "
+                + "cantidad = " + libro.getCantidad() + " AND "
+                + "editorial = \"" + libro.getEditorial().getNombre() + "\" AND "
+                + "num_paginas = " + libro.getNumDePaginas();
+        try {
+            PreparedStatement pstmt = con.con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("id_libro");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return id;
+    }
+
+    private void enlazarEsteAutorConLibroEnBD(Autor a) {
+        Logic.conexion con = new Logic.conexion();
+        con.ConectarBasedeDatos();
+        Statement statement = con.sentencia;
+        String query = "INSERT INTO libro_has_autor VALUES("
+                + libro.getId() + ", " + a.getIdentificador() + ")";
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    private void mostrarMensajeConElementosFaltantes() {
+        List<String> faltantes = libro.elementosFaltantes();
+        int numFaltantes = faltantes.size();
+        String message = "Falta ingresar ";
+        StringBuilder hints = new StringBuilder();
+        String singular = "el siguiente dato:\n";
+        String plural = "los siguientes datos:\n";
+        message += numFaltantes > 1 ? plural : singular;
+
+        faltantes.forEach((faltante) -> {
+            hints.append("  • ").append(faltante).append(".\n");
+        });
+
+        message += hints.toString();
+
+        this.setAlwaysOnTop(false);
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.WARNING_MESSAGE);
+        this.setAlwaysOnTop(true);
+    }
+
+    private void setupInformacionDelLibro() {
+        libro.setNombre(txtNombreLibro.getText().trim());
+        libro.setDesc(txtDesc.getText().trim());
+        libro.setSubgenero(String.valueOf(boxSubgenero.getSelectedItem()));
+        libro.setTipo(String.valueOf(boxTipo.getSelectedItem()));
+        libro.setCantidad((int) spnCantidad.getValue());
+        libro.setNumDePaginas((int) spnPaginas.getValue());
+    }
+
+    private void setupTableMenus() {
+        tblEditoriales.setComponentPopupMenu(editorialOptionsMenu);
+        tblAutores.setComponentPopupMenu(autorOptionsMenu);
+    }
+
+    private void aceptarEditorialSeleccionada() {
+        int N = tblEditoriales.getColumnCount();
+        int M = tblEditoriales.getSelectedRowCount();
+        if (M > 0) {
+            Object[] datos = new Object[N];
+            for (int i = 0; i < N; i++) {
+                datos[i] = tblEditoriales.getValueAt(tblEditoriales.getSelectedRow(), i);
+            }
+            int idEditorial = (int) datos[0];
+            String nombreEditorial = String.valueOf(datos[1]);
+            Editorial editorial = new Editorial(idEditorial, nombreEditorial);
+            libro.setEditorial(editorial);
+            registrarEditorial.dispose();
+            lblEditorial.setText("√");
+            this.setVisible(true);
+        } else {
+            registrarEditorial.setAlwaysOnTop(false);
+            JOptionPane.showMessageDialog(null, "Seleccione una editorial", "Error", JOptionPane.WARNING_MESSAGE);
+            registrarEditorial.setAlwaysOnTop(true);
+        }
+    }
+
+    private void eliminarEditorialDeLaBD(int idEditorial) {
+        Logic.conexion cone = new Logic.conexion();
+        cone.ConectarBasedeDatos();
+        try {
+            String query = "DELETE FROM editorial WHERE id_editorial = " + idEditorial;
+            PreparedStatement pstmt = cone.con.prepareStatement(query);
+            pstmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        cone.DesconectarBasedeDatos();
+    }
+
+    private void actualizarEditorial() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
