@@ -135,6 +135,11 @@ public class Libros extends JFrame {
 
         eliminarOption.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         eliminarOption.setText("Eliminar");
+        eliminarOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarOptionActionPerformed(evt);
+            }
+        });
         libroOptionsMenu.add(eliminarOption);
 
         filtrarLibros.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -780,6 +785,17 @@ public class Libros extends JFrame {
 
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void eliminarOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarOptionActionPerformed
+        int N = tblLibros.getSelectedRowCount();
+        int[] selectedRow = tblLibros.getSelectedRows();
+
+        for (int i = 0; i < N; i++) {
+            int idLibro = (int) tblLibros.getValueAt(selectedRow[i], 0);
+            eliminarLibroDeLaBD(idLibro);
+        }
+        mostrarTablaLibros();
+    }//GEN-LAST:event_eliminarOptionActionPerformed
+
     private void mostrarTablaLibros() {
         Logic.conexion con = new Logic.conexion();
         con.ConectarBasedeDatos();
@@ -830,7 +846,6 @@ public class Libros extends JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Libros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -938,6 +953,19 @@ public class Libros extends JFrame {
 
     private void crearPopMenuATabla() {
         tblLibros.setComponentPopupMenu(libroOptionsMenu);
+    }
+
+    private void eliminarLibroDeLaBD(int idLibro) {
+        Logic.conexion cone = new Logic.conexion();
+        cone.ConectarBasedeDatos();
+        try {
+            String query = "DELETE FROM libro WHERE id_libro = " + idLibro;
+            PreparedStatement pstmt = cone.con.prepareStatement(query);
+            pstmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        cone.DesconectarBasedeDatos();
     }
 
 }
