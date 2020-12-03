@@ -18,7 +18,7 @@ public class RegistroEstudiante extends javax.swing.JFrame {
 
     private int x, y;
     private int grado;
-    private String matricula, nombre, paterno, materno;
+    private String matricula, nombre, paterno, materno,grupo;
 
     /**
      * Creates new form RegistroEstudiante
@@ -27,6 +27,7 @@ public class RegistroEstudiante extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         placeHolder();
+        boxGrupo.setVisible(false);
     }
 
     private void placeHolder() {
@@ -67,10 +68,8 @@ public class RegistroEstudiante extends javax.swing.JFrame {
         boxGrupo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(534, 290));
         setMinimumSize(new java.awt.Dimension(534, 290));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(534, 290));
         setResizable(false);
         setSize(new java.awt.Dimension(534, 290));
 
@@ -80,7 +79,7 @@ public class RegistroEstudiante extends javax.swing.JFrame {
         lblHeader.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(254, 254, 254));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeader.setText("<html><h1>Registrar Estudiante</h1>");
+        lblHeader.setText("<html><h1>Registrar clientes</h1>");
         lblHeader.setPreferredSize(new java.awt.Dimension(530, 50));
         lblHeader.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         lblHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -125,21 +124,12 @@ public class RegistroEstudiante extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Nombre");
 
-        txtNombre.setActionCommand("<Not Set>");
-
-        txtPaterno.setActionCommand("<Not Set>");
-
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Paterno");
 
-        txtMaterno.setActionCommand("<Not Set>");
-
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Materno");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -172,26 +162,22 @@ public class RegistroEstudiante extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(218, 218, 218));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Matricula");
 
         spnGrado.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         spnGrado.setModel(new javax.swing.SpinnerNumberModel(1, 1, 6, 1));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Grado");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Grupo");
 
         boxGrupo.setBackground(new java.awt.Color(216, 216, 216));
         boxGrupo.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -251,7 +237,7 @@ public class RegistroEstudiante extends javax.swing.JFrame {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,8 +271,8 @@ public class RegistroEstudiante extends javax.swing.JFrame {
             paterno = txtPaterno.getText();
             materno = txtMaterno.getText();
             grado = (int) spnGrado.getValue();
-            String grupo = (String) boxGrupo.getSelectedItem();
-
+//            String grupo = (String) boxGrupo.getSelectedItem();
+            String grupo = "C";
             Logic.conexion con = new Logic.conexion();
             con.ConectarBasedeDatos();
 

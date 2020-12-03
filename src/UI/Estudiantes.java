@@ -29,7 +29,7 @@ public class Estudiantes extends javax.swing.JFrame {
 
     public Estudiantes() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
+        //setExtendedState(MAXIMIZED_BOTH);
         mostrarTablaAlumnosYNumeroDeEstudiantes();
         placeHolder();
         mostrarMenuDeOpciones();
