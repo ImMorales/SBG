@@ -821,7 +821,9 @@ public class RegistroLibro extends JFrame {
             if (Libros.btnRegitro != null) {
                 Libros.btnRegitro.setEnabled(true);
             }
+  
             this.dispose();
+            
         } else {
             mostrarMensajeConElementosFaltantes();
         }

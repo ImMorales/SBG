@@ -31,6 +31,9 @@ public class Libros extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
 
     }
+    public static void refresh(){
+     
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -959,7 +962,22 @@ public class Libros extends JFrame {
         Logic.conexion cone = new Logic.conexion();
         cone.ConectarBasedeDatos();
         try {
-            String query = "DELETE FROM libro WHERE id_libro = " + idLibro;
+            String query = "DELETE FROM libro_has_autor WHERE libro_id_libro = " + idLibro+";";
+            PreparedStatement pstmt = cone.con.prepareStatement(query);
+            pstmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        try {
+            String query = "DELETE FROM libro WHERE id_libro = " + idLibro+";";
+            PreparedStatement pstmt = cone.con.prepareStatement(query);
+            pstmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        try {
+            String query = "DELETE FROM prestamo WHERE id_libro = " + idLibro+";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
