@@ -319,11 +319,11 @@ public class Menu_prestamos extends javax.swing.JFrame {
         con.ConectarBasedeDatos();
 
         try {
-            String query = "SELECT * FROM alumno";
+            String query = "SELECT matricula,nombre,apellido_paterno,apellido_materno,grado FROM alumno";
             PreparedStatement pstmt = con.con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             modelestudiante = (DefaultTableModel) DbUtils.resultSetToTableModel(rs);
-            modelestudiante.setColumnIdentifiers(new Object[]{"Matricula", "Nombre", "Apellido Paterno", "Apellido Materno", "Grado", "Grupo"});
+            modelestudiante.setColumnIdentifiers(new Object[]{"Matricula", "Nombre", "Apellido Paterno", "Apellido Materno", "Edad"});
             tblAlumnosestudiante.setModel(modelestudiante);
 
         } catch (SQLException e) {
@@ -608,7 +608,6 @@ public class Menu_prestamos extends javax.swing.JFrame {
         RegistroPrestamos.setTitle("SiBi [Registro de prestamo]");
         RegistroPrestamos.setAlwaysOnTop(true);
         RegistroPrestamos.setMinimumSize(new java.awt.Dimension(520, 600));
-        RegistroPrestamos.setPreferredSize(new java.awt.Dimension(520, 600));
         RegistroPrestamos.setSize(new java.awt.Dimension(520, 600));
 
         header1.setBackground(new java.awt.Color(0, 102, 255));
@@ -688,14 +687,14 @@ public class Menu_prestamos extends javax.swing.JFrame {
         Panel_prestamos_principal.add(Panel_libro);
 
         Panel_lector.setBackground(new java.awt.Color(254, 254, 254));
-        Panel_lector.setBorder(javax.swing.BorderFactory.createTitledBorder("<html><h2>Lector</h2></html>"));
+        Panel_lector.setBorder(javax.swing.BorderFactory.createTitledBorder("<html><h2>Cliente</h2></html>"));
         Panel_lector.setPreferredSize(new java.awt.Dimension(491, 210));
         Panel_lector.setLayout(new java.awt.GridLayout(1, 0));
 
         LEFT_reader.setBackground(new java.awt.Color(255, 255, 255));
 
         btnBuscarAlumno.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarAlumno.setText("Seleccionar lector");
+        btnBuscarAlumno.setText("Seleccionar cliente");
         btnBuscarAlumno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -958,7 +957,7 @@ public class Menu_prestamos extends javax.swing.JFrame {
         Seleccionar_libro.getContentPane().add(Panel_inferiorBL, java.awt.BorderLayout.CENTER);
 
         Seleccionar_estudiante.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        Seleccionar_estudiante.setTitle("Busqueda de estudiante");
+        Seleccionar_estudiante.setTitle("Busqueda de cliente");
         Seleccionar_estudiante.setMinimumSize(new java.awt.Dimension(800, 530));
 
         headerES.setBackground(new java.awt.Color(0, 102, 255));
@@ -1203,7 +1202,6 @@ public class Menu_prestamos extends javax.swing.JFrame {
         Plus_informacion.setTitle("Informacion de prestamo");
         Plus_informacion.setAlwaysOnTop(true);
         Plus_informacion.setMinimumSize(new java.awt.Dimension(550, 430));
-        Plus_informacion.setPreferredSize(new java.awt.Dimension(550, 430));
         Plus_informacion.setSize(new java.awt.Dimension(550, 430));
 
         header2.setBackground(new java.awt.Color(0, 102, 255));
@@ -1733,7 +1731,7 @@ public class Menu_prestamos extends javax.swing.JFrame {
             PreparedStatement pstmt = con.con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             model = (DefaultTableModel) DbUtils.resultSetToTableModel(rs);
-            model.setColumnIdentifiers(new Object[]{"Id_prestamo", "Nombre del alumno", "Apelido paterno", "Apelido materno", "Libro", "Docente", "Fecha de salida", "Fecha de devolucion", "Estado"});
+            model.setColumnIdentifiers(new Object[]{"Id_prestamo", "Nombre del cliente", "Apelido paterno", "Apelido materno", "Libro", "Docente", "Fecha de salida", "Fecha de devolucion", "Estado"});
 
             NumeroPrestamosTotales = model.getRowCount();
             tblPrestamos.setModel(model);
