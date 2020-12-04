@@ -84,7 +84,6 @@ public class RegistroLibro extends JFrame {
         eliminarEditorial = new javax.swing.JMenuItem();
         autorOptionsMenu = new javax.swing.JPopupMenu();
         aceptarAutor = new javax.swing.JMenuItem();
-        editarAutor = new javax.swing.JMenuItem();
         eliminarAutor = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -138,7 +137,6 @@ public class RegistroLibro extends JFrame {
 
         tblEditoriales.setAutoCreateRowSorter(true);
         tblEditoriales.setModel(new javax.swing.table.DefaultTableModel());
-        tblEditoriales.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         tblEditoriales.setShowVerticalLines(false);
         tblEditoriales.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblEditoriales);
@@ -163,7 +161,6 @@ public class RegistroLibro extends JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Nombre:");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -194,7 +191,6 @@ public class RegistroLibro extends JFrame {
         );
 
         tituloEditorial.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        tituloEditorial.setForeground(new java.awt.Color(51, 51, 51));
         tituloEditorial.setText("Registrar nueva editorial");
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -308,17 +304,14 @@ public class RegistroLibro extends JFrame {
 
         jLabel8.setBackground(new java.awt.Color(51, 51, 51));
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Nombre (s):");
 
         jLabel11.setBackground(new java.awt.Color(51, 51, 51));
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("Apellido paterno:");
 
         jLabel12.setBackground(new java.awt.Color(51, 51, 51));
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Apellido materno:");
 
         btnRegistrar.setBackground(new java.awt.Color(0, 102, 255));
@@ -372,7 +365,6 @@ public class RegistroLibro extends JFrame {
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Registrar nuevo autor");
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -494,10 +486,6 @@ public class RegistroLibro extends JFrame {
         aceptarAutor.setText("Aceptar");
         autorOptionsMenu.add(aceptarAutor);
 
-        editarAutor.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        editarAutor.setText("Editar");
-        autorOptionsMenu.add(editarAutor);
-
         eliminarAutor.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         eliminarAutor.setText("Eliminar");
         eliminarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -532,7 +520,6 @@ public class RegistroLibro extends JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Nombre:");
 
         txtNombreLibro.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -547,7 +534,6 @@ public class RegistroLibro extends JFrame {
         jScrollPane1.setViewportView(txtDesc);
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Descripción:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -588,11 +574,9 @@ public class RegistroLibro extends JFrame {
         spnPaginas.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Número de páginas:");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Subgenero:");
 
         boxSubgenero.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -600,14 +584,12 @@ public class RegistroLibro extends JFrame {
         boxSubgenero.setPreferredSize(new java.awt.Dimension(183, 30));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Tipo:");
 
         boxTipo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         boxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Informativo", "Literarios" }));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Cantidad:");
 
         spnCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -670,7 +652,6 @@ public class RegistroLibro extends JFrame {
         btnRegistrarEditorial.setMaximumSize(new java.awt.Dimension(75, 52));
         btnRegistrarEditorial.setMinimumSize(new java.awt.Dimension(75, 52));
         btnRegistrarEditorial.setPreferredSize(new java.awt.Dimension(75, 52));
-        btnRegistrarEditorial.setRolloverEnabled(true);
         btnRegistrarEditorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editorial_black.png"))); // NOI18N
         btnRegistrarEditorial.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editorial_black.png"))); // NOI18N
         btnRegistrarEditorial.addActionListener(new java.awt.event.ActionListener() {
@@ -680,7 +661,6 @@ public class RegistroLibro extends JFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setText("Editorial:");
 
         btnRegistrarAutor.setBackground(new java.awt.Color(255, 255, 255));
@@ -689,7 +669,6 @@ public class RegistroLibro extends JFrame {
         btnRegistrarAutor.setMaximumSize(new java.awt.Dimension(75, 52));
         btnRegistrarAutor.setMinimumSize(new java.awt.Dimension(75, 52));
         btnRegistrarAutor.setPreferredSize(new java.awt.Dimension(75, 52));
-        btnRegistrarAutor.setRolloverEnabled(true);
         btnRegistrarAutor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fancy_black.png"))); // NOI18N
         btnRegistrarAutor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fancy_black.png"))); // NOI18N
         btnRegistrarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -699,15 +678,12 @@ public class RegistroLibro extends JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setText("Autor(es):");
 
         lblAutores.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        lblAutores.setForeground(new java.awt.Color(51, 51, 51));
         lblAutores.setText("0");
 
         lblEditorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        lblEditorial.setForeground(new java.awt.Color(51, 51, 51));
         lblEditorial.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -777,14 +753,14 @@ public class RegistroLibro extends JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -821,9 +797,9 @@ public class RegistroLibro extends JFrame {
             if (Libros.btnRegitro != null) {
                 Libros.btnRegitro.setEnabled(true);
             }
-  
+
             this.dispose();
-            
+
         } else {
             mostrarMensajeConElementosFaltantes();
         }
@@ -839,7 +815,6 @@ public class RegistroLibro extends JFrame {
             registrarNuevaEditorial();
         } else {
             actualizarEditorial();
-            JOptionPane.showMessageDialog(null, "Elemento actualizado", "Actualizacion", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_txtNombreEditorialActionPerformed
 
@@ -847,12 +822,7 @@ public class RegistroLibro extends JFrame {
         if (btnIngresarEditorial.getText().equals("Registrar")) {
             registrarNuevaEditorial();
         } else {
-            registrarEditorial.setAlwaysOnTop(false);
-            JOptionPane.showMessageDialog(null, "Elemento actualizado", "Actualizacion", JOptionPane.INFORMATION_MESSAGE);
-            registrarEditorial.setAlwaysOnTop(true);
-            tituloEditorial.setText("Registrar nueva editorial");
-            txtNombreEditorial.setText("");
-            btnIngresarEditorial.setText("Registrar");
+            actualizarEditorial();
         }
 
     }//GEN-LAST:event_btnIngresarEditorialActionPerformed
@@ -889,6 +859,9 @@ public class RegistroLibro extends JFrame {
         }
         if (!areCamposParaRegistrarAutorEmpty()) {
             registrarAutor(a);
+            txtNombreAutor.setText("");
+            txtMaternoAutor.setText("");
+            txtPaternoAutor.setText("");
         } else {
             registrarAutor.setAlwaysOnTop(false);
             JOptionPane.showMessageDialog(null, "Ingresa valores en los campos de autor", "Error", 0);
@@ -964,7 +937,7 @@ public class RegistroLibro extends JFrame {
     private void autorOptionsMenuPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_autorOptionsMenuPopupMenuWillBecomeVisible
         int autoresSeleccionados = tblAutores.getSelectedRowCount();
         boolean areMultiplesAuotresSeleccionados = autoresSeleccionados > 1;
-        editarAutor.setEnabled(!areMultiplesAuotresSeleccionados);
+//        editarAutor.setEnabled(!areMultiplesAuotresSeleccionados);
     }//GEN-LAST:event_autorOptionsMenuPopupMenuWillBecomeVisible
 
     private void aceptarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarEditorialActionPerformed
@@ -1054,7 +1027,6 @@ public class RegistroLibro extends JFrame {
     private javax.swing.JButton btnRegistrarAutor;
     private javax.swing.JButton btnRegistrarEditorial;
     private javax.swing.JButton btnRegistrarLibro;
-    private javax.swing.JMenuItem editarAutor;
     private javax.swing.JMenuItem editarEditorial;
     private javax.swing.JPopupMenu editorialOptionsMenu;
     private javax.swing.JMenuItem eliminarAutor;
@@ -1354,7 +1326,32 @@ public class RegistroLibro extends JFrame {
     }
 
     private void actualizarEditorial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int N = tblEditoriales.getSelectedRow();
+        int idEditorial = (int) tblEditoriales.getValueAt(N, 0);
+        System.out.println("idEditorial>" + idEditorial);
+        String newName = txtNombreEditorial.getText();
+        actualizarEditorialEnBd(idEditorial, newName);
+        registrarEditorial.setAlwaysOnTop(false);
+        JOptionPane.showMessageDialog(null, "Elemento actualizado", "Actualizacion", JOptionPane.INFORMATION_MESSAGE);
+        registrarEditorial.setAlwaysOnTop(true);
+        tituloEditorial.setText("Registrar nueva editorial");
+        txtNombreEditorial.setText("");
+        btnIngresarEditorial.setText("Registrar");
+        mostrarEditoriales();
     }
 
+    private void actualizarEditorialEnBd(int idEditorial, String newName) {
+        Logic.conexion con = new Logic.conexion();
+        con.ConectarBasedeDatos();
+
+        com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement) con.sentencia;
+        try {
+            statement.executeUpdate(
+                    "UPDATE editorial SET "
+                    + "nombre ='" + newName + "'"
+                    + "WHERE id_editorial = " + idEditorial + ";");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 }

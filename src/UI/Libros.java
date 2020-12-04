@@ -31,8 +31,9 @@ public class Libros extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
 
     }
-    public static void refresh(){
-     
+
+    public static void refresh() {
+
     }
 
     /**
@@ -84,14 +85,11 @@ public class Libros extends JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lblLibros = new javax.swing.JLabel();
         lblAutores = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        btnFiltro = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnRegitro = new javax.swing.JButton();
         lblVolver = new javax.swing.JLabel();
@@ -156,23 +154,18 @@ public class Libros extends JFrame {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         jCheckBox6.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox6.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox6.setText("Espejo de Urania");
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Subgenero");
 
         jCheckBox1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox1.setText("Al Sol Solito");
 
         jCheckBox2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox2.setText("Astrolabio");
 
         jCheckBox5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox5.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox5.setText("Pasos de Luna");
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +174,6 @@ public class Libros extends JFrame {
         });
 
         jCheckBox7.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox7.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox7.setText("Cometas Convidados");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -222,15 +214,12 @@ public class Libros extends JFrame {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Tipo");
 
         jCheckBox3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox3.setText("Informativo");
 
         jCheckBox4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox4.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox4.setText("Literario");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -290,7 +279,6 @@ public class Libros extends JFrame {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,13 +327,11 @@ public class Libros extends JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
         jButton3.setText("Editar");
         jPanel14.add(jButton3);
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 51, 51));
         jButton4.setText("Eliminar");
         jPanel14.add(jButton4);
 
@@ -354,7 +340,6 @@ public class Libros extends JFrame {
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -362,13 +347,10 @@ public class Libros extends JFrame {
         jLabel4.setText("###");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Autor(es) :");
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jTextArea1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
@@ -475,28 +457,12 @@ public class Libros extends JFrame {
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
-        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-        jPanel16.add(jLabel11);
-
-        txtBusqueda.setBackground(new java.awt.Color(255, 255, 255));
         txtBusqueda.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtBusqueda.setBorder(null);
         txtBusqueda.setMaximumSize(new java.awt.Dimension(320, 30));
         txtBusqueda.setMinimumSize(new java.awt.Dimension(80, 30));
         txtBusqueda.setPreferredSize(new java.awt.Dimension(320, 30));
         jPanel16.add(txtBusqueda);
-
-        jLabel12.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
-        jLabel12.setToolTipText("");
-        jPanel16.add(jLabel12);
 
         jPanel7.add(jPanel16, new java.awt.GridBagConstraints());
 
@@ -508,13 +474,11 @@ public class Libros extends JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 110));
 
         lblLibros.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        lblLibros.setForeground(new java.awt.Color(51, 51, 51));
         lblLibros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLibros.setText("<html><center><h1>#</h1><h3>Libros</h3></center>");
         lblLibros.setPreferredSize(new java.awt.Dimension(100, 100));
 
         lblAutores.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        lblAutores.setForeground(new java.awt.Color(51, 51, 51));
         lblAutores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAutores.setText("<html><center><h1>#</h1><h3>Autores</h3></center>");
         lblAutores.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -543,22 +507,9 @@ public class Libros extends JFrame {
 
         jPanel8.setBackground(new java.awt.Color(254, 254, 254));
 
-        btnFiltro.setBackground(new java.awt.Color(255, 255, 255));
-        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter.png"))); // NOI18N
-        btnFiltro.setComponentPopupMenu(libroOptionsMenu);
-        btnFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnFiltro.setRolloverEnabled(true);
-        btnFiltro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter_black.png"))); // NOI18N
-        btnFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiltroActionPerformed(evt);
-            }
-        });
-
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnActualizar.setRolloverEnabled(true);
         btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh_black.png"))); // NOI18N
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,7 +520,6 @@ public class Libros extends JFrame {
         btnRegitro.setBackground(new java.awt.Color(255, 255, 255));
         btnRegitro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add.png"))); // NOI18N
         btnRegitro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnRegitro.setRolloverEnabled(true);
         btnRegitro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add_black.png"))); // NOI18N
         btnRegitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -582,9 +532,7 @@ public class Libros extends JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(78, 78, 78)
                 .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegitro)
@@ -595,7 +543,6 @@ public class Libros extends JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFiltro)
                     .addComponent(btnActualizar)
                     .addComponent(btnRegitro))
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -736,15 +683,6 @@ public class Libros extends JFrame {
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
-    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
-        Point fromFiltroButtonPosition = btnFiltro.getLocationOnScreen();
-        int x = (int) fromFiltroButtonPosition.getX();
-        int y = (int) fromFiltroButtonPosition.getY() + 50;
-        Point pointForFiltroFrame = new Point(x, y);
-        filtrarLibros.setLocation(pointForFiltroFrame);
-        filtrarLibros.setVisible(true);
-    }//GEN-LAST:event_btnFiltroActionPerformed
-
     private void btnRegitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegitroActionPerformed
         RegistroLibro nuevoRegistroDeLibro = new RegistroLibro();
         nuevoRegistroDeLibro.setVisible(true);
@@ -782,11 +720,6 @@ public class Libros extends JFrame {
         informacionOption.setEnabled(true);
         informacionDeLibro.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        txtBusqueda.setFocusable(true);
-
-    }//GEN-LAST:event_jLabel11MouseClicked
 
     private void eliminarOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarOptionActionPerformed
         int N = tblLibros.getSelectedRowCount();
@@ -861,7 +794,6 @@ public class Libros extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    public static javax.swing.JButton btnFiltro;
     public static javax.swing.JButton btnRegitro;
     private javax.swing.JMenuItem editarOption;
     private javax.swing.JMenuItem eliminarOption;
@@ -882,8 +814,6 @@ public class Libros extends JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -962,22 +892,22 @@ public class Libros extends JFrame {
         Logic.conexion cone = new Logic.conexion();
         cone.ConectarBasedeDatos();
         try {
-            String query = "DELETE FROM libro_has_autor WHERE libro_id_libro = " + idLibro+";";
+            String query = "DELETE FROM libro_has_autor WHERE libro_id_libro = " + idLibro + ";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
             System.out.println(e);
         }
         try {
-            String query = "DELETE FROM libro WHERE id_libro = " + idLibro+";";
+            String query = "DELETE FROM libro WHERE id_libro = " + idLibro + ";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         try {
-            String query = "DELETE FROM prestamo WHERE id_libro = " + idLibro+";";
+            String query = "DELETE FROM prestamo WHERE id_libro = " + idLibro + ";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
