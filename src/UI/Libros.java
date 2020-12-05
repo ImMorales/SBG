@@ -457,7 +457,6 @@ public class Libros extends JFrame {
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
-<<<<<<< HEAD
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -468,8 +467,6 @@ public class Libros extends JFrame {
         });
         jPanel16.add(jLabel11);
 
-=======
->>>>>>> 9f2a495a9ba2697ee8b557b1c3efa611c0a77485
         txtBusqueda.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtBusqueda.setBorder(null);
         txtBusqueda.setMaximumSize(new java.awt.Dimension(320, 30));
@@ -477,7 +474,6 @@ public class Libros extends JFrame {
         txtBusqueda.setPreferredSize(new java.awt.Dimension(320, 30));
         jPanel16.add(txtBusqueda);
 
-<<<<<<< HEAD
         jLabel12.setBackground(new java.awt.Color(204, 204, 204));
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
         jLabel12.setToolTipText("");
@@ -489,8 +485,6 @@ public class Libros extends JFrame {
         });
         jPanel16.add(jLabel12);
 
-=======
->>>>>>> 9f2a495a9ba2697ee8b557b1c3efa611c0a77485
         jPanel7.add(jPanel16, new java.awt.GridBagConstraints());
 
         jPanel4.add(jPanel7, java.awt.BorderLayout.CENTER);
@@ -534,7 +528,6 @@ public class Libros extends JFrame {
 
         jPanel8.setBackground(new java.awt.Color(254, 254, 254));
 
-<<<<<<< HEAD
         btnFiltro.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter.png"))); // NOI18N
         btnFiltro.setComponentPopupMenu(libroOptionsMenu);
@@ -546,8 +539,6 @@ public class Libros extends JFrame {
             }
         });
 
-=======
->>>>>>> 9f2a495a9ba2697ee8b557b1c3efa611c0a77485
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
