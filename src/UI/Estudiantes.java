@@ -29,7 +29,7 @@ public class Estudiantes extends javax.swing.JFrame {
 
     public Estudiantes() {
         initComponents();
-        //setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
         mostrarTablaAlumnosYNumeroDeEstudiantes();
         placeHolder();
         mostrarMenuDeOpciones();
@@ -83,7 +83,10 @@ public class Estudiantes extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         lblEstudiantes = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         btnRegistro = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
@@ -416,7 +419,6 @@ public class Estudiantes extends javax.swing.JFrame {
         });
 
         gpoC.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        gpoC.setForeground(new java.awt.Color(51, 51, 51));
         gpoC.setText("C");
         gpoC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -425,7 +427,6 @@ public class Estudiantes extends javax.swing.JFrame {
         });
 
         gpoB.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        gpoB.setForeground(new java.awt.Color(51, 51, 51));
         gpoB.setText("B");
         gpoB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -563,9 +564,38 @@ public class Estudiantes extends javax.swing.JFrame {
         jPanel7.setMinimumSize(new java.awt.Dimension(100, 30));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+
+        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jPanel16.add(jLabel11);
+
+        txtBusqueda.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtBusqueda.setBorder(null);
+        txtBusqueda.setMaximumSize(new java.awt.Dimension(320, 30));
         txtBusqueda.setMinimumSize(new java.awt.Dimension(80, 30));
         txtBusqueda.setPreferredSize(new java.awt.Dimension(320, 30));
-        jPanel7.add(txtBusqueda, new java.awt.GridBagConstraints());
+        jPanel16.add(txtBusqueda);
+
+        jLabel12.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
+        jLabel12.setToolTipText("");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        jPanel16.add(jLabel12);
+
+        jPanel7.add(jPanel16, new java.awt.GridBagConstraints());
 
         jPanel4.add(jPanel7);
 
@@ -633,7 +663,7 @@ public class Estudiantes extends javax.swing.JFrame {
         lblVolver.setForeground(new java.awt.Color(255, 255, 255));
         lblVolver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/baseline_keyboard_backspace_white_18dp.png"))); // NOI18N
-        lblVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblVolverMouseClicked(evt);
@@ -718,6 +748,14 @@ public class Estudiantes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        txtBusqueda.setFocusable(true);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+       txtBusqueda.setText("");
+    }//GEN-LAST:event_jLabel12MouseClicked
 
     public static void mostrarTablaAlumnosYNumeroDeEstudiantes() {
         Logic.conexion con = new Logic.conexion();
@@ -1071,6 +1109,8 @@ public class Estudiantes extends javax.swing.JFrame {
     private javax.swing.JCheckBox gpoB;
     private javax.swing.JCheckBox gpoC;
     private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1085,6 +1125,7 @@ public class Estudiantes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

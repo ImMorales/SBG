@@ -526,11 +526,11 @@ panel_menu_estudiantes.setBackground(new Color(255,255,255));
     }//GEN-LAST:event_panel_menu_reportes2MouseClicked
 
     private void panel_menu_reportes2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_menu_reportes2MouseExited
-        panel_menu_reportes.setBackground(new Color(255,255,255));
+        panel_menu_reportes2.setBackground(new Color(255,255,255));
     }//GEN-LAST:event_panel_menu_reportes2MouseExited
 
     private void panel_menu_reportes2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_menu_reportes2MouseEntered
-        panel_menu_reportes.setBackground(new Color(241,241,241));
+        panel_menu_reportes2.setBackground(new Color(241,241,241));
     }//GEN-LAST:event_panel_menu_reportes2MouseEntered
 
     /**

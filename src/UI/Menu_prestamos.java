@@ -487,8 +487,10 @@ public class Menu_prestamos extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         PanelPrestamosTOP = new javax.swing.JPanel();
         PanelPrestamosCenter = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         txtBusquedaPrestamos = new javax.swing.JTextField();
-        lblerase = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         PanelPrestamosRight = new javax.swing.JPanel();
         btnRegistro = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -782,8 +784,8 @@ public class Menu_prestamos extends javax.swing.JFrame {
         bottom.setBackground(new java.awt.Color(254, 254, 254));
         bottom.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
 
-        btn_aceptar_prestamo.setBackground(new java.awt.Color(255, 255, 255));
-        btn_aceptar_prestamo.setForeground(new java.awt.Color(0, 0, 0));
+        btn_aceptar_prestamo.setBackground(new java.awt.Color(0, 102, 255));
+        btn_aceptar_prestamo.setForeground(new java.awt.Color(255, 255, 255));
         btn_aceptar_prestamo.setText("Aceptar");
         btn_aceptar_prestamo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_aceptar_prestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -875,9 +877,9 @@ public class Menu_prestamos extends javax.swing.JFrame {
         paneloptionsBL.setBackground(new java.awt.Color(255, 255, 255));
         paneloptionsBL.setPreferredSize(new java.awt.Dimension(200, 70));
 
-        btnRegistrolibro.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrolibro.setBackground(new java.awt.Color(0, 102, 255));
         btnRegistrolibro.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        btnRegistrolibro.setForeground(new java.awt.Color(1, 1, 1));
+        btnRegistrolibro.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrolibro.setText("<html><h3>Aceptar</h3>");
         btnRegistrolibro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrolibro.setFocusPainted(false);
@@ -1029,9 +1031,9 @@ public class Menu_prestamos extends javax.swing.JFrame {
         paneloptionsBL1.setBackground(new java.awt.Color(255, 255, 255));
         paneloptionsBL1.setPreferredSize(new java.awt.Dimension(200, 70));
 
-        btnRegistroestudiante.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistroestudiante.setBackground(new java.awt.Color(0, 102, 255));
         btnRegistroestudiante.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        btnRegistroestudiante.setForeground(new java.awt.Color(1, 1, 1));
+        btnRegistroestudiante.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistroestudiante.setText("<html><h3>Aceptar</h3>");
         btnRegistroestudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistroestudiante.setFocusPainted(false);
@@ -1420,34 +1422,38 @@ public class Menu_prestamos extends javax.swing.JFrame {
         PanelPrestamosCenter.setMinimumSize(new java.awt.Dimension(100, 30));
         PanelPrestamosCenter.setLayout(new java.awt.GridBagLayout());
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+
+        jLabel16.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        jPanel16.add(jLabel16);
+
+        txtBusquedaPrestamos.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtBusquedaPrestamos.setBorder(null);
+        txtBusquedaPrestamos.setMaximumSize(new java.awt.Dimension(320, 30));
         txtBusquedaPrestamos.setMinimumSize(new java.awt.Dimension(80, 30));
         txtBusquedaPrestamos.setPreferredSize(new java.awt.Dimension(320, 30));
-        txtBusquedaPrestamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaPrestamosActionPerformed(evt);
-            }
-        });
-        txtBusquedaPrestamos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBusquedaPrestamosKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBusquedaPrestamosKeyPressed(evt);
-            }
-        });
-        PanelPrestamosCenter.add(txtBusquedaPrestamos, new java.awt.GridBagConstraints());
+        jPanel16.add(txtBusquedaPrestamos);
 
-        lblerase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblerase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG_menu/Eraser.png"))); // NOI18N
-        lblerase.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        lblerase.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblerase.setPreferredSize(new java.awt.Dimension(30, 30));
-        lblerase.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel17.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
+        jLabel17.setToolTipText("");
+        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbleraseMouseClicked(evt);
+                jLabel17MouseClicked(evt);
             }
         });
-        PanelPrestamosCenter.add(lblerase, new java.awt.GridBagConstraints());
+        jPanel16.add(jLabel17);
+
+        PanelPrestamosCenter.add(jPanel16, new java.awt.GridBagConstraints());
 
         PanelPrestamosTOP.add(PanelPrestamosCenter, java.awt.BorderLayout.CENTER);
 
@@ -2164,18 +2170,6 @@ RegistroPrestamos.setTitle("Registro de prestamo");
         cone.DesconectarBasedeDatos();
     }
 
-    private void txtBusquedaPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaPrestamosActionPerformed
-
-    }//GEN-LAST:event_txtBusquedaPrestamosActionPerformed
-
-    private void txtBusquedaPrestamosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaPrestamosKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusquedaPrestamosKeyTyped
-
-    private void txtBusquedaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaPrestamosKeyPressed
-
-    }//GEN-LAST:event_txtBusquedaPrestamosKeyPressed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cbx_all.setSelected(true);
         cbx_pendientes.setSelected(false);
@@ -2517,9 +2511,9 @@ RegistroPrestamos.setTitle("Registro de prestamo");
             apellidoPestudiante = (String) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 2);
             apellidoMestudiante = (String) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 3);
             gradoestudiante = (int) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 4);
-            grupoestudiante = (String) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 5);
+          //  grupoestudiante = (String) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 5);
 
-            info_lector = "Informacion del lector:\nNombre: " + getNombreestudiante() + "\nApellido paterno: " + getApellidoPestudiante() + " \nApellido materno: " + getApellidoMestudiante() + " \nGrado: " + getGradoestudiante() + " \nGrupo: " + getGrupoestudiante();
+            info_lector = "Informacion del lector:\nNombre: " + getNombreestudiante() + "\nApellido paterno: " + getApellidoPestudiante() + " \nApellido materno: " + getApellidoMestudiante() + " \nGrado: " + getGradoestudiante();
             ta_info_lector.setText(info_lector);
 
             prestamos_matricula = matriculaestudiante;
@@ -2559,10 +2553,6 @@ RegistroPrestamos.setTitle("Registro de prestamo");
         }
     }//GEN-LAST:event_lbl_encabezado_prestamosMouseClicked
 
-    private void lbleraseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleraseMouseClicked
-        txtBusquedaPrestamos.setText("");
-    }//GEN-LAST:event_lbleraseMouseClicked
-
     private void lbl_encabezado_prestamosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_encabezado_prestamosMouseReleased
         lbl_encabezado_prestamos.setCursor(new Cursor(DEFAULT_CURSOR));
 
@@ -2571,6 +2561,14 @@ RegistroPrestamos.setTitle("Registro de prestamo");
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Plus_informacion.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        txtBusquedaPrestamos.setFocusable(true);
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        txtBusquedaPrestamos.setText("");
+    }//GEN-LAST:event_jLabel17MouseClicked
 //comment
 
     /**
@@ -2685,6 +2683,8 @@ RegistroPrestamos.setTitle("Registro de prestamo");
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2694,6 +2694,7 @@ RegistroPrestamos.setTitle("Registro de prestamo");
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2718,7 +2719,6 @@ RegistroPrestamos.setTitle("Registro de prestamo");
     public static javax.swing.JLabel lbl_numero_pendientes;
     public static javax.swing.JLabel lbl_numero_tex;
     public static javax.swing.JLabel lbl_numero_ude;
-    private javax.swing.JLabel lblerase;
     private javax.swing.JPanel paneloptionsBL;
     private javax.swing.JPanel paneloptionsBL1;
     private javax.swing.JPanel plusinfo1;

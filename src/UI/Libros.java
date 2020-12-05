@@ -114,12 +114,12 @@ public class Libros extends JFrame {
         };
 
         libroOptionsMenu.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                libroOptionsMenuPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                libroOptionsMenuPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -156,23 +156,18 @@ public class Libros extends JFrame {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         jCheckBox6.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox6.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox6.setText("Espejo de Urania");
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Subgenero");
 
         jCheckBox1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox1.setText("Al Sol Solito");
 
         jCheckBox2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox2.setText("Astrolabio");
 
         jCheckBox5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox5.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox5.setText("Pasos de Luna");
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +176,6 @@ public class Libros extends JFrame {
         });
 
         jCheckBox7.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox7.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox7.setText("Cometas Convidados");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -222,15 +216,12 @@ public class Libros extends JFrame {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Tipo");
 
         jCheckBox3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox3.setText("Informativo");
 
         jCheckBox4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jCheckBox4.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox4.setText("Literario");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -290,7 +281,6 @@ public class Libros extends JFrame {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,13 +329,11 @@ public class Libros extends JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
         jButton3.setText("Editar");
         jPanel14.add(jButton3);
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 51, 51));
         jButton4.setText("Eliminar");
         jPanel14.add(jButton4);
 
@@ -354,7 +342,6 @@ public class Libros extends JFrame {
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -362,13 +349,10 @@ public class Libros extends JFrame {
         jLabel4.setText("###");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Autor(es) :");
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jTextArea1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
@@ -485,7 +469,6 @@ public class Libros extends JFrame {
         });
         jPanel16.add(jLabel11);
 
-        txtBusqueda.setBackground(new java.awt.Color(255, 255, 255));
         txtBusqueda.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtBusqueda.setBorder(null);
         txtBusqueda.setMaximumSize(new java.awt.Dimension(320, 30));
@@ -496,6 +479,12 @@ public class Libros extends JFrame {
         jLabel12.setBackground(new java.awt.Color(204, 204, 204));
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
         jLabel12.setToolTipText("");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
         jPanel16.add(jLabel12);
 
         jPanel7.add(jPanel16, new java.awt.GridBagConstraints());
@@ -508,13 +497,11 @@ public class Libros extends JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 110));
 
         lblLibros.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        lblLibros.setForeground(new java.awt.Color(51, 51, 51));
         lblLibros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLibros.setText("<html><center><h1>#</h1><h3>Libros</h3></center>");
         lblLibros.setPreferredSize(new java.awt.Dimension(100, 100));
 
         lblAutores.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        lblAutores.setForeground(new java.awt.Color(51, 51, 51));
         lblAutores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAutores.setText("<html><center><h1>#</h1><h3>Autores</h3></center>");
         lblAutores.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -547,7 +534,6 @@ public class Libros extends JFrame {
         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter.png"))); // NOI18N
         btnFiltro.setComponentPopupMenu(libroOptionsMenu);
         btnFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnFiltro.setRolloverEnabled(true);
         btnFiltro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter_black.png"))); // NOI18N
         btnFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -558,7 +544,6 @@ public class Libros extends JFrame {
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnActualizar.setRolloverEnabled(true);
         btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh_black.png"))); // NOI18N
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,7 +554,6 @@ public class Libros extends JFrame {
         btnRegitro.setBackground(new java.awt.Color(255, 255, 255));
         btnRegitro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add.png"))); // NOI18N
         btnRegitro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnRegitro.setRolloverEnabled(true);
         btnRegitro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add_black.png"))); // NOI18N
         btnRegitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,7 +594,7 @@ public class Libros extends JFrame {
         lblVolver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/baseline_keyboard_backspace_white_18dp.png"))); // NOI18N
         lblVolver.setToolTipText("Regresar");
-        lblVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblVolverMouseClicked(evt);
@@ -798,6 +782,10 @@ public class Libros extends JFrame {
         }
         mostrarTablaLibros();
     }//GEN-LAST:event_eliminarOptionActionPerformed
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+         txtBusqueda.setText("");
+    }//GEN-LAST:event_jLabel12MouseClicked
 
     private void mostrarTablaLibros() {
         Logic.conexion con = new Logic.conexion();
