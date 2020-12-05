@@ -31,8 +31,9 @@ public class Libros extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
 
     }
-    public static void refresh(){
-     
+
+    public static void refresh() {
+
     }
 
     /**
@@ -84,14 +85,11 @@ public class Libros extends JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lblLibros = new javax.swing.JLabel();
         lblAutores = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        btnFiltro = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnRegitro = new javax.swing.JButton();
         lblVolver = new javax.swing.JLabel();
@@ -459,6 +457,7 @@ public class Libros extends JFrame {
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
+<<<<<<< HEAD
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -469,6 +468,8 @@ public class Libros extends JFrame {
         });
         jPanel16.add(jLabel11);
 
+=======
+>>>>>>> 9f2a495a9ba2697ee8b557b1c3efa611c0a77485
         txtBusqueda.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtBusqueda.setBorder(null);
         txtBusqueda.setMaximumSize(new java.awt.Dimension(320, 30));
@@ -476,6 +477,7 @@ public class Libros extends JFrame {
         txtBusqueda.setPreferredSize(new java.awt.Dimension(320, 30));
         jPanel16.add(txtBusqueda);
 
+<<<<<<< HEAD
         jLabel12.setBackground(new java.awt.Color(204, 204, 204));
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clear.png"))); // NOI18N
         jLabel12.setToolTipText("");
@@ -487,6 +489,8 @@ public class Libros extends JFrame {
         });
         jPanel16.add(jLabel12);
 
+=======
+>>>>>>> 9f2a495a9ba2697ee8b557b1c3efa611c0a77485
         jPanel7.add(jPanel16, new java.awt.GridBagConstraints());
 
         jPanel4.add(jPanel7, java.awt.BorderLayout.CENTER);
@@ -530,6 +534,7 @@ public class Libros extends JFrame {
 
         jPanel8.setBackground(new java.awt.Color(254, 254, 254));
 
+<<<<<<< HEAD
         btnFiltro.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/filter.png"))); // NOI18N
         btnFiltro.setComponentPopupMenu(libroOptionsMenu);
@@ -541,6 +546,8 @@ public class Libros extends JFrame {
             }
         });
 
+=======
+>>>>>>> 9f2a495a9ba2697ee8b557b1c3efa611c0a77485
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -566,9 +573,7 @@ public class Libros extends JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(78, 78, 78)
                 .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegitro)
@@ -579,7 +584,6 @@ public class Libros extends JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFiltro)
                     .addComponent(btnActualizar)
                     .addComponent(btnRegitro))
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -720,15 +724,6 @@ public class Libros extends JFrame {
         this.dispose();
     }//GEN-LAST:event_lblVolverMouseClicked
 
-    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
-        Point fromFiltroButtonPosition = btnFiltro.getLocationOnScreen();
-        int x = (int) fromFiltroButtonPosition.getX();
-        int y = (int) fromFiltroButtonPosition.getY() + 50;
-        Point pointForFiltroFrame = new Point(x, y);
-        filtrarLibros.setLocation(pointForFiltroFrame);
-        filtrarLibros.setVisible(true);
-    }//GEN-LAST:event_btnFiltroActionPerformed
-
     private void btnRegitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegitroActionPerformed
         RegistroLibro nuevoRegistroDeLibro = new RegistroLibro();
         nuevoRegistroDeLibro.setVisible(true);
@@ -766,11 +761,6 @@ public class Libros extends JFrame {
         informacionOption.setEnabled(true);
         informacionDeLibro.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        txtBusqueda.setFocusable(true);
-
-    }//GEN-LAST:event_jLabel11MouseClicked
 
     private void eliminarOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarOptionActionPerformed
         int N = tblLibros.getSelectedRowCount();
@@ -849,7 +839,6 @@ public class Libros extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    public static javax.swing.JButton btnFiltro;
     public static javax.swing.JButton btnRegitro;
     private javax.swing.JMenuItem editarOption;
     private javax.swing.JMenuItem eliminarOption;
@@ -870,8 +859,6 @@ public class Libros extends JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -950,22 +937,22 @@ public class Libros extends JFrame {
         Logic.conexion cone = new Logic.conexion();
         cone.ConectarBasedeDatos();
         try {
-            String query = "DELETE FROM libro_has_autor WHERE libro_id_libro = " + idLibro+";";
+            String query = "DELETE FROM libro_has_autor WHERE libro_id_libro = " + idLibro + ";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
             System.out.println(e);
         }
         try {
-            String query = "DELETE FROM libro WHERE id_libro = " + idLibro+";";
+            String query = "DELETE FROM libro WHERE id_libro = " + idLibro + ";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         try {
-            String query = "DELETE FROM prestamo WHERE id_libro = " + idLibro+";";
+            String query = "DELETE FROM prestamo WHERE id_libro = " + idLibro + ";";
             PreparedStatement pstmt = cone.con.prepareStatement(query);
             pstmt.execute();
         } catch (SQLException e) {

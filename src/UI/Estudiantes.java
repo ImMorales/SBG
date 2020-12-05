@@ -149,7 +149,7 @@ public class Estudiantes extends javax.swing.JFrame {
         optionsMenu.add(editarOption);
 
         registroEstudiante.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        registroEstudiante.setTitle("Registrar estudiante");
+        registroEstudiante.setTitle("Registrar cliente");
         registroEstudiante.setMinimumSize(new java.awt.Dimension(536, 265));
         registroEstudiante.setResizable(false);
         registroEstudiante.setSize(new java.awt.Dimension(536, 265));
@@ -1154,7 +1154,7 @@ public class Estudiantes extends javax.swing.JFrame {
         StringBuilder formattedNumLibros = new StringBuilder();
         formattedNumLibros.append("<html><center><h1>");
         formattedNumLibros.append(numeroDeEstudiantes);
-        formattedNumLibros.append("</h1><h3>Estudiantes</h3></center>");
+        formattedNumLibros.append("</h1><h3>Clientes</h3></center>");
         lblEstudiantes.setText(formattedNumLibros.toString());
     }
 

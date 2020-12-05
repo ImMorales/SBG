@@ -50,7 +50,6 @@ public class RegistroEditorial extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         elegirOption = new javax.swing.JMenuItem();
         eliminarOption = new javax.swing.JMenuItem();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         txtBusqueda = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -81,10 +80,6 @@ public class RegistroEditorial extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(634, 363));
         setResizable(false);
         setSize(new java.awt.Dimension(634, 363));
-
-        jPanel2.setBackground(new java.awt.Color(0, 102, 255));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setBackground(new java.awt.Color(254, 254, 254));
         jPanel3.setPreferredSize(new java.awt.Dimension(320, 320));
@@ -308,7 +303,6 @@ public class RegistroEditorial extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
