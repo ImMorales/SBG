@@ -259,6 +259,8 @@ public class Reportes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SiBi");
+        setMinimumSize(new java.awt.Dimension(788, 350));
+        setPreferredSize(new java.awt.Dimension(788, 350));
 
         header.setBackground(new java.awt.Color(0, 102, 255));
         header.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -309,6 +311,7 @@ public class Reportes extends javax.swing.JFrame {
         Panel_centroreportes.add(panel_button, java.awt.BorderLayout.PAGE_END);
 
         Optionreport.setBackground(new java.awt.Color(245, 245, 245));
+        Optionreport.setPreferredSize(new java.awt.Dimension(748, 190));
         Optionreport.setLayout(new java.awt.GridLayout(1, 3, 20, 20));
 
         RLibro.setBackground(new java.awt.Color(255, 255, 255));
@@ -349,7 +352,7 @@ public class Reportes extends javax.swing.JFrame {
             RLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RLibroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblRLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -394,7 +397,7 @@ public class Reportes extends javax.swing.JFrame {
             RestudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RestudiantesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblREstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -439,7 +442,7 @@ public class Reportes extends javax.swing.JFrame {
             RPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RPrestamosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblRPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -484,7 +487,7 @@ public class Reportes extends javax.swing.JFrame {
             RPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RPersonalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblRPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -506,7 +509,7 @@ public class Reportes extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGap(0, 229, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel4, java.awt.BorderLayout.LINE_END);
@@ -522,7 +525,7 @@ public class Reportes extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGap(0, 229, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel5, java.awt.BorderLayout.LINE_START);
@@ -593,6 +596,8 @@ public class Reportes extends javax.swing.JFrame {
         Panel_BotonesRep.add(jPanel11, java.awt.BorderLayout.LINE_END);
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel12.setMinimumSize(new java.awt.Dimension(364, 35));
+        jPanel12.setPreferredSize(new java.awt.Dimension(364, 35));
         jPanel12.setLayout(new java.awt.GridLayout(1, 2, 20, 20));
 
         btn_generarreportes.setBackground(new java.awt.Color(0, 102, 255));
@@ -601,6 +606,9 @@ public class Reportes extends javax.swing.JFrame {
         btn_generarreportes.setText("Generar reporte(s)");
         btn_generarreportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_generarreportes.setFocusable(false);
+        btn_generarreportes.setMaximumSize(new java.awt.Dimension(172, 35));
+        btn_generarreportes.setMinimumSize(new java.awt.Dimension(172, 35));
+        btn_generarreportes.setPreferredSize(new java.awt.Dimension(172, 35));
         btn_generarreportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_generarreportesActionPerformed(evt);
@@ -613,6 +621,7 @@ public class Reportes extends javax.swing.JFrame {
         jButton2.setText("Cancelar");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusable(false);
+        jButton2.setPreferredSize(new java.awt.Dimension(98, 35));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -626,7 +635,7 @@ public class Reportes extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(799, 365));
+        setSize(new java.awt.Dimension(799, 374));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -708,13 +717,13 @@ public class Reportes extends javax.swing.JFrame {
     private void RestudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RestudiantesMouseClicked
       if(CheckEstudiantes == false){
           Restudiantes.setBackground(new Color(0,255,0,60));
-          lblREstudiantes.setText("<html><h3>Estudiantes (✓)</html></h3>");
+          lblREstudiantes.setText("<html><h3>Clientes (✓)</html></h3>");
           CheckEstudiantes=true;
           
       }
      else if(CheckEstudiantes == true){
          Restudiantes.setBackground(new Color(255,255,255));
-          lblREstudiantes.setText("<html><h3>Estudiantes</html></h3>");
+          lblREstudiantes.setText("<html><h3>Clientes</html></h3>");
           CheckEstudiantes=false;
       }     
         
@@ -958,7 +967,7 @@ hiloaccion.start();
     @Override
     public void run() {
     
-    mr.reporte_estudiantes(ruta);
+    mr.reporte_libros(ruta);
     Rwait.dispose();
     JOptionPane.showMessageDialog(null, "Reporte generado con exito");
 
