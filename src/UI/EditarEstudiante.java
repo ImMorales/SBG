@@ -67,7 +67,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editar Estudiante");
+        setTitle("Editar Cliente");
         setMinimumSize(new java.awt.Dimension(536, 239));
         setResizable(false);
         setSize(new java.awt.Dimension(536, 239));
