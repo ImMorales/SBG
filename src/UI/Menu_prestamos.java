@@ -2513,7 +2513,7 @@ RegistroPrestamos.setTitle("Registro de prestamo");
             gradoestudiante = (int) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 4);
           //  grupoestudiante = (String) modelestudiante.getValueAt(tblAlumnosestudiante.getSelectedRow(), 5);
 
-            info_lector = "Informacion del lector:\nNombre: " + getNombreestudiante() + "\nApellido paterno: " + getApellidoPestudiante() + " \nApellido materno: " + getApellidoMestudiante() + " \nGrado: " + getGradoestudiante();
+            info_lector = "Informacion del lector:\nNombre: " + getNombreestudiante() + "\nApellido paterno: " + getApellidoPestudiante() + " \nApellido materno: " + getApellidoMestudiante() + " \nEdad: " + getGradoestudiante();
             ta_info_lector.setText(info_lector);
 
             prestamos_matricula = matriculaestudiante;
