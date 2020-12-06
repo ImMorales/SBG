@@ -2521,7 +2521,7 @@ RegistroPrestamos.setTitle("Registro de prestamo");
 
             Seleccionar_estudiante.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Selecciona un estudiante");
+            JOptionPane.showMessageDialog(null, "Selecciona un cliente");
         }
 
     }//GEN-LAST:event_btnRegistroestudianteActionPerformed
